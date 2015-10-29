@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'tracking/index'
+
   root 'shipping#home'
   resources :shipping
-  
+  resources :tracking
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
