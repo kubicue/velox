@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VeloxApp</title>
+  <title>Velox App</title>
+  <link rel="stylesheet" type="text/css" href="https://goo.gl/7KuzjX">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
+  <style>
+   body{background: #f6f6f6; color: #020979;}
+   .brand{font-weight: 700; letter-spacing: -1px;font-size: 4.6rem;}
+   .brand a{color: #020979}
+   .sub-nav{font-weight: 600; color: #021279}
+  </style>
 <body>
-
+<%= render 'header' %>
 <%= yield %>
-
+<%= render 'footer' %>
 </body>
 </html>

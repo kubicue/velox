@@ -1,0 +1,86 @@
+<div class="container">
+<h2>Shipping#ship</h2>
+<p>Find me in app/views/shipping/ship.html.erb</p>
+<form id="myform" class="mysign-in" action="/shipping" method="post">
+  <input
+  type="hidden"
+  name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+  <div id="errors">
+    <%= flash[:errors].join("<br>").html_safe if flash[:errors] %>
+  </div>
+
+  <div class="form-container">
+    <h2>From Address:</h2>
+    <ul class="inputs">
+      <li>
+        <input type="text" name="from_address[company]" class="form-control" placeholder="Name" required>
+      </li>
+
+      <li>
+        <input type="text" name="from_address[street1]" class="form-control" placeholder="Street Address" required>
+      </li>
+
+      <li>
+        <input type="text" name="from_address[city]" class="form-control" placeholder="City" required>
+      </li>
+
+      <li>
+        <input type="text" name="from_address[state]" class="form-control" placeholder="State" required>
+      </li>
+      <li>
+        <input type="number" name="from_address[zip]" class="form-control" placeholder="ZIP" required>
+      </li>
+    </ul>
+  </div>
+
+  <div class="form-container">
+    <h2>To Address:</h2>
+    <ul class="inputs">
+      <li>
+        <input type="text" name="to_address[name]" class="form-control" placeholder="Name" required>
+      </li>
+
+      <li>
+        <input type="text" name="to_address[street1]" class="form-control" placeholder="Street Address" required>
+      </li>
+
+      <li>
+        <input type="text" name="to_address[city]" class="form-control" placeholder="City" required>
+      </li>
+
+      <li>
+        <input type="text" name="to_address[state]" class="form-control" placeholder="State" required>
+      </li>
+
+      <li>
+        <input type="text" name="to_address[zip]" class="form-control" placeholder="ZIP" required>
+      </li>
+    </ul>
+    <div class="form-container">
+      <h2>Parcel Dimentions:</h2>
+      <ul class = "inputs">
+
+        <li>
+          <input type="number" name="parcel[length]" class="form-control" placeholder="Length" required>
+        </li>
+
+        <li>
+          <input type="number" name="parcel[width]" class="form-control" placeholder="Width" required>
+        </li>
+
+        <li>
+          <input type="number" name="parcel[height]" class="form-control" placeholder="Height" required>
+        </li>
+
+        <li>
+          <input type="number" name="parcel[weight]" class="form-control" placeholder="Weight" required>
+        </li>
+      </ul>
+    </div>
+    <div class="btn">
+    <button type="submit" class="button">Print Label</button>
+    </div>
+  </form>
+
+</div>

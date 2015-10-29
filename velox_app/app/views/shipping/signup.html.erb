@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="form-group">
+    <label for="email">Email<sup>*</sup></label>
+  <p><%= text_field(:email, :email) %><br/>
+    <label for="password">Password<sup>*</sup></label><br/>
+  <%= password_field_tag(:password) %><br/>
+  <label for="password">Confirm Password<sup>*</sup></label><br/>
+  <%= password_field_tag(:password) %></p>
+  <p><%= check_box_tag(:terms) %> I agree with <strong>velox</strong><a href="#"> terms</a><sup>*</sup></p>
+  <p><%= submit_tag("Sign Up") %></p>
+
+  </div>
+</div>
