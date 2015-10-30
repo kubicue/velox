@@ -1,10 +1,8 @@
 <div class="container">
-<h2>Shipping#ship</h2>
-<p>Find me in app/views/shipping/ship.html.erb</p>
-
+<h2>Ship your package</h2>
+<div class="row">
 <form id="myform" class="mysign-in" action="/shipping" method="post">
-  <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
   <input
   type="hidden"
   name="authenticity_token"
@@ -14,7 +12,7 @@
   </div>
 
   <div class="form-container">
-    <h3>From Address:</h3>
+    <h3 class="section-title">From</h3>
 
         <input type="text" name="from_address[company]" class="form-control" placeholder="Name" required>
 
@@ -33,9 +31,17 @@
 
         <input type="text" name="from_address[zip]" class="form-control" placeholder="ZIP" required>
   </div>
+</div>
 
+  <div class="col-xs-2">
+    <p class="pack-icon">
+    <img alt="Package Details" src="//easypost-static.s3.amazonaws.com/assets/transfer-0bb2412a71f8ea9e2017c110062d3e21.png">
+    </p>
+  </div>
+
+   <div class="col-xs-5">
   <div class="form-container">
-    <h3>To Address:</h3>
+    <h3 class="section-title">To</h3>
 
 
         <input type="text" name="to_address[name]" class="form-control" placeholder="Name" required>
@@ -46,7 +52,7 @@
 
 
 
-        <input type="text" name="to_address[city]" class="form-control" placeholder="City" required>
+        <input type="text" name="to_address[city]"  class="form-control" placeholder="City" required>
 
 
 
@@ -56,9 +62,12 @@
 
         <input type="text" name="to_address[zip]" class="form-control" placeholder="ZIP" required>
 
+    </div>
+  </div>
 
+      <div class="col-xs-6">
     <div class="form-container">
-      <h3>Parcel Dimentions:</h3>
+      <h3 class="section-title">Parcel Size</h3>
 
 
 
@@ -75,16 +84,17 @@
 
 
           <input type="text" name="parcel[weight]" class="form-control" placeholder="Weight" required>
+        </div>
+        </div>
 
-    </div>
-    <div class="btn">
-    <button type="submit" class="button">Print Label</button>
-    </div>
+      <div class="col-xs-6">
+
+    <div class="print-label btn pull-right">
+      <button type="submit" class="btn btn-basic "><span class="glyphicon glyphicon-print"></span> Print Shipping Label</button>
+  </div>
+  <p class="text-mute pull-right">You will be redirect to external link to print your label.</p>
+  </div>
   </form>
 </div>
-</div>
-<div class="row">
-    <div class="col-xs-6">
-    </div>
-    </div>
+
 </div>

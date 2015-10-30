@@ -1,13 +1,18 @@
 class ShippingController < ApplicationController
   def home
-    render :home
-
+    wf = 'https://api.forecast.io/forecast/8b0e1f8b53a5e7e0e6b2a1b2ced3ceda/32.7150,-117.1625'
+    @weather = HTTParty.get(wf).parsed_response
+    @ship_to_city_weather = "Fuck"
   end
 
+
   def create
+
+    #Easypost Shipping API Integration
       EasyPost.api_key = 'sFfFy3otb2g0hjzjWaqB6A'
+      #Capture sender adress information
       sender = params[:to_address]
-      # binding.pry
+
       to_address = EasyPost::Address.create(
         :name => sender[:name],
         :street1 => sender[:street1],
@@ -17,6 +22,7 @@ class ShippingController < ApplicationController
         :country => sender[:country],
         :phone => sender[:phone],
         )
+        #Capture recipient adress information
         recipient = params[:from_address]
       from_address = EasyPost::Address.create(
         :company => recipient[:company],
@@ -26,6 +32,7 @@ class ShippingController < ApplicationController
         :zip => recipient[:zip],
         :phone => recipient[:phone],
         )
+      #Capture parcel details information
       pack = params[:parcel]
       parcel = EasyPost::Parcel.create(
         :width => pack[:width],
@@ -67,10 +74,10 @@ class ShippingController < ApplicationController
         :rate => shipment.lowest_rate
         )
 
-      # binding.pry
+
       puts shipment.postage_label.label_url
 
       redirect_to shipment.postage_label.label_url
-    # render :index
+
   end
 end

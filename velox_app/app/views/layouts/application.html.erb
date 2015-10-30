@@ -7,10 +7,31 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <style>
-   body{background: #f6f6f6; color: #020979;}
+   body{background: #fff; color: #020979;}
+   a:hover{color:#020980;}
    .brand{font-weight: 700; letter-spacing: -1px;font-size: 4.6rem;}
    .brand a{color: #020979}
    .sub-nav{font-weight: 600; color: #021279}
+   .section-title{color: #020979, font-size:30px; font-weight: 700;
+    line-height: 40px; margin-bottom: 20px; text-transform: uppercase;}
+    .form-control{margin-bottom: 10px;}
+    .pack-icon{margin-top: 150px;}
+    .print-label{ padding-top: 180px;}
+    .btn-basic {
+      display: block;
+      color: white;
+      font-weight: 700;
+      line-height: 16px;
+      background: green;
+      background-size:auto;
+      background-clip: border-box;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 260px;
+
+    }
+    .btn-basic a{color: white;}
+    .footsie{margin-top: 40px;}
   </style>
 <body>
 <%= render 'header' %>

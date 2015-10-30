@@ -1,4 +1,15 @@
 <div class="container">
 <h2>Shipping#home</h2>
 <p>Find me in app/views/shipping/home.html.erb</p>
+<div class="row weather-box">
+  <% if @ship_to_city_weather.present? %>
+
+   <h4>Weather conditions for <%= @ship_to_city_weather %></h4>
+      <div>
+        <p>Partly Cloudy</p>
+        <p><strong>55<sup>&deg;</sup></strong></p>
+      </div>
+
+    <% end %>
+</div>
 </div>
