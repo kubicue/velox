@@ -7,13 +7,57 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <style>
-   body{background: #fff; color: #020979;}
-   a:hover{color:#020980;}
-   .brand{font-weight: 700; letter-spacing: -1px;font-size: 4.6rem;}
-   .brand a{color: #020979}
-   .sub-nav{font-weight: 600; color: #021279}
-   .section-title{color: #020979, font-size:30px; font-weight: 700;
-    line-height: 40px; margin-bottom: 20px; text-transform: uppercase;}
+   body{background: #f3f3f3;}
+     ul.nav li a, ul.nav li a:visited {
+      color: #fff !important;
+  }
+
+  ul.nav li a:hover, ul.nav li a:active {
+      color: #fff !important;
+      background-color:rgba(36,56,103,0.5) !important;
+      border-bottom: 1px solid rgb(26,40,77);
+  }
+
+  ul.nav li.active a {
+      color: #fff !important;
+  }
+
+   .brand{font-weight: bold;font-size: 38.2px; margin-bottom: 20px;}
+   .brand a{color: ghostwhite;}
+   .brand a:hover{text-decoration: none;}
+   .sub-nav{font-weight: 600; color: white;}
+   .top-header{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
+    background-origin: padding-box;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+
+
+   }
+
+   .jumbo-title{
+
+    border-spacing: 0px 0px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 38.2px;
+    font-weight: 700;
+    line-height: 16.8833px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+
+   }
+   .jumbo-purpose{color:#fff; font-size: 18.5px; line-height: 31.5px; font-weight: 300;
+     margin-left: 10px; margin-bottom: 30px;}
+   .section-title{color: rgb(15,12,14); font-size:30px; font-weight: 700;
+    line-height: 40px; margin-bottom: 20px;}
     .form-control{margin-bottom: 10px;}
     .pack-icon{margin-top: 150px;}
     .print-label{ padding-top: 180px;}
@@ -22,7 +66,7 @@
       color: white;
       font-weight: 700;
       line-height: 16px;
-      background: green;
+      background: rgb(44,56,97);
       background-size:auto;
       background-clip: border-box;
       border-radius: 5px;
