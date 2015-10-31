@@ -2,13 +2,13 @@ class ShippingController < ApplicationController
   def home
     wf = 'https://api.forecast.io/forecast/8b0e1f8b53a5e7e0e6b2a1b2ced3ceda/32.7150,-117.1625'
     @weather = HTTParty.get(wf).parsed_response
-    @ship_to_city_weather = "Santa Monica"
+    @city = "Santa Monica, CA"
   end
 
 
   def create
 
-    #Easypost Shipping API Integration
+      #Easypost Shipping API Integration
       EasyPost.api_key = 'sFfFy3otb2g0hjzjWaqB6A'
       #Capture sender adress information
       sender = params[:to_address]
