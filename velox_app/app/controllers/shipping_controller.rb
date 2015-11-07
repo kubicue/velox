@@ -3,6 +3,9 @@ class ShippingController < ApplicationController
     wf = 'https://api.forecast.io/forecast/8b0e1f8b53a5e7e0e6b2a1b2ced3ceda/32.7150,-117.1625'
     @weather = HTTParty.get(wf).parsed_response
     @city = "Santa Monica, CA"
+    #Easypost Shipping API Integration
+    key = EasyPost.api_key = 'sFfFy3otb2g0hjzjWaqB6A'
+    @shipment = EasyPost::Shipment.all
   end
 
 
@@ -63,7 +66,7 @@ class ShippingController < ApplicationController
     :customs_items => [customs_item]
     )
 
-      shipment = EasyPost::Shipment.create(
+      @shipment = EasyPost::Shipment.create(
         :to_address => to_address,
         :from_address => from_address,
         :parcel => parcel,
