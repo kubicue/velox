@@ -1,0 +1,256 @@
+/* line 4, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+body {
+  background: #f3f3f3;
+}
+
+/* line 5, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+ul.nav li a, ul.nav li a:visited {
+  color: #fff !important;
+}
+
+/* line 8, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+ul.nav li a:hover, ul.nav li a:active {
+  color: #fff !important;
+  background-color: rgba(36, 56, 103, 0.5) !important;
+  border-bottom: 1px solid #1a284d;
+}
+
+/* line 13, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+ul.nav li.active a {
+  color: #fff !important;
+}
+
+/* line 16, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.brand {
+  font-weight: bold;
+  font-size: 38.2px;
+  margin-bottom: 20px;
+}
+
+/* line 17, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.brand a {
+  color: ghostwhite !important;
+}
+
+/* line 18, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.brand a:hover {
+  background: none;
+  text-decoration: none !important;
+}
+
+/* line 19, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.sub-nav {
+  font-weight: 600;
+  color: white;
+}
+
+/* line 20, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.top-header {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: transparent;
+  background-image: url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
+  background-origin: padding-box;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+/* line 31, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.copy-imp {
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: 300;
+}
+
+/* line 32, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.summary {
+  font-size: 16.2px;
+  font-weight: 600;
+  line-height: 15.8833px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  padding: 4px;
+  width: auto;
+}
+
+/* line 41, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.temp {
+  font-size: 38.2px;
+  font-weight: 700;
+  line-height: 16.8833px;
+}
+
+/* line 46, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.sup {
+  font-size: 23.2px;
+  font-weight: 400;
+}
+
+/* line 50, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.jumbo-title {
+  border-spacing: 0px 0px;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 38.2px;
+  font-weight: 700;
+  line-height: 16.8833px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* line 62, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.jumbo-purpose {
+  color: #fff;
+  font-size: 18.5px;
+  line-height: 31.5px;
+  font-weight: 300;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+/* line 65, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.section-title {
+  color: #0f0c0e;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+
+/* line 67, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.form-control {
+  margin-bottom: 10px;
+}
+
+/* line 68, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.pack-icon {
+  margin-top: 150px;
+}
+
+/* line 69, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.print-label {
+  padding-top: 180px;
+}
+
+/* line 70, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.btn-basic {
+  display: block;
+  color: white;
+  font-weight: 700;
+  line-height: 16px;
+  background: #2c3861;
+  background-size: auto;
+  background-clip: border-box;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 260px;
+}
+
+/* line 82, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.btn-basic a {
+  color: white;
+}
+
+/* line 83, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/home.scss */
+.footsie {
+  margin-top: 40px;
+}
+/* line 1, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a {
+  color: #000;
+}
+/* line 24, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a:visited {
+  color: #666;
+}
+/* line 28, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 35, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 40, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#notice {
+  color: green;
+}
+
+/* line 44, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 50, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 58, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 69, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
