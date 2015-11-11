@@ -1,0 +1,83 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{background: #f3f3f3;}
+     ul.nav li a, ul.nav li a:visited {
+      color: #fff !important;
+  }
+  ul.nav li a:hover, ul.nav li a:active {
+      color: #fff !important;
+      background-color:rgba(36,56,103,0.5) !important;
+      border-bottom: 1px solid rgb(26,40,77);
+  }
+  ul.nav li.active a {
+      color: #fff !important;
+  }
+   .brand{font-weight: bold;font-size: 38.2px; margin-bottom: 20px;}
+   .brand a{color: ghostwhite !important;}
+   .brand a:hover{ background:none; text-decoration: none !important;}
+   .sub-nav{font-weight: 600; color: white;}
+   .top-header{
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
+    background-origin: padding-box;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+   }
+   .copy-imp{font-size: 21px; line-height: 26px;font-weight: 300;}
+   .summary{
+     font-size: 16.2px;
+     font-weight: 600;
+     line-height: 15.8833px;
+     text-transform: uppercase;
+     border-radius: 6px;
+     padding: 4px;
+     width: auto;
+   }
+   .temp{
+     font-size: 38.2px;
+     font-weight: 700;
+     line-height: 16.8833px;
+   }
+   .sup{
+     font-size: 23.2px;
+     font-weight: 400;
+   }
+   .jumbo-title{
+    border-spacing: 0px 0px;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 38.2px;
+    font-weight: 700;
+    line-height: 16.8833px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+   }
+   .jumbo-purpose{color:#fff; font-size: 18.5px; line-height: 31.5px; font-weight: 300;
+     margin-left: 10px; margin-bottom: 30px;}
+     
+   .section-title{color: rgb(15,12,14); font-size:30px; font-weight: 700;
+    line-height: 40px; margin-bottom: 20px;}
+    .form-control{margin-bottom: 10px;}
+    .pack-icon{margin-top: 150px;}
+    .print-label{ padding-top: 180px;}
+    .btn-basic {
+      display: block;
+      color: white;
+      font-weight: 700;
+      line-height: 16px;
+      background: rgb(44,56,97);
+      background-size:auto;
+      background-clip: border-box;
+      border-radius: 5px;
+      text-align: center;
+      max-width: 260px;
+    }
+    .btn-basic a{color: white;}
+    .footsie{margin-top: 40px;}
