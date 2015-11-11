@@ -38,7 +38,7 @@ I will add the following extra requirement to the **velox  ** project.
 
       7. Add the logic view/controller [back end dashboard/admin for users]
        
-      8. ADD the Geocoder API to determine the best shipping routes and integrate Google maps API and Forecast io two show the user history of the shipment.
+      8. ADD the Geocoder API to determine the best shipping routes and integrate Google maps API and Forecast io two show the user history of the shipment and weather data through the shipment route.
    
 ---   
 
