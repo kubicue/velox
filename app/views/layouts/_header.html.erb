@@ -17,8 +17,8 @@
 
     <li class="sub-nav"><%= link_to 'Signup', '/signup' %></li>
   <% end %>
-  <% if flash[:message] %>
-    <b><%= flash[:message] %></b>
+  <% if flash.now[:message] %>
+    <b><%= flash.now[:message] %></b>
   <% end %>
 
 </ul>
