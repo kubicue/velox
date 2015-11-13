@@ -50,3 +50,4 @@ group :development, :test do
   gem 'rails_12factor'
 end
 end
+ruby '2.0.0'
