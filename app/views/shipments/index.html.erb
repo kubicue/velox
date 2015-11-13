@@ -1,3 +1,41 @@
 <div class="container">
 <h1>Ship Stuff Here</h1>
+<div class="container">
+  <div class="row">
+<%= form_tag("/ship", method: "post") do %>
+<div class="col-xs-4">
+<h3>From:</h3>
+ Full Name: <%= text_field_tag(:from_name) %><br/><br/>
+ Street: <%= text_field_tag(:from_street1) %><br/><br/>
+ City: <%= text_field_tag(:from_city) %><br/><br/>
+ Zip Code: <%= text_field_tag(:from_zip) %><br/><br/>
+ State: <%= text_field_tag(:from_state) %><br/><br/>
+ Country: <%= text_field_tag(:from_country) %><br/><br/>
+ Email: <%= text_field_tag(:from_email) %><br/><br/>
+ </div>
+ <div class="col-xs-4">
+ <h3>To:</h3>
+ Full Name: <%= text_field_tag(:to_name) %><br/><br/>
+ Street: <%= text_field_tag(:to_street1) %><br/><br/>
+ City: <%= text_field_tag(:to_city) %><br/><br/>
+ Zip Code: <%= text_field_tag(:to_zip) %><br/><br/>
+ State: <%= text_field_tag(:to_state) %><br/><br/>
+ Country: <%= text_field_tag(:to_country) %><br/><br/>
+ Email: <%= text_field_tag(:to_email) %><br/><br/>
+ </div>
+ <div class="col-xs-4">
+ <h3>Shipment Details:</h3>
+ Lenght: <%= text_field_tag(:length) %><br/><br/>
+ Width: <%= text_field_tag(:width) %><br/><br/>
+ Height: <%= text_field_tag(:height) %><br/><br/>
+ Weight: <%= text_field_tag(:weight) %><br/><br/>
+ <br/><br/>
+ <%= submit_tag("Print Shipping label") %>
+ </div>
+ <% end %>
+  </div>
+ </div>
+ <div class="rates">
+
+ </div>
 </div>
