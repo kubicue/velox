@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 # Easypost API
 gem 'easypost'
+
 # Stripe API
 gem 'stripe'
 # Use ActiveModel has_secure_password

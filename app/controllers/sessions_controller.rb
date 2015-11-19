@@ -6,11 +6,11 @@ class SessionsController < ApplicationController
       # Save the user id inside the browser cookie. This is how we keep the user
       # logged in when they navigate around our website.
       session[:user_id] = user.id
-      flash[:message] = "Login successful!"
+      flash[:notice] = "Login successful!"
 
       redirect_to '/'
     else
-      flash[:message] = "Incorrect Username or Password. Please try again."
+      flash[:notice] = "Incorrect Username or Password. Please try again."
 
     # If user's login doesn't work, send them back to the login form.
       redirect_to '/login'

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'home#home'
-  resources :shipping
+  resources :shipments
   resources :tracks
   get '/track' =>  'tracks#index'
-  get '/ship' =>  'shipments#index'
-  post '/ship' =>  'shipments#index'
+
+
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

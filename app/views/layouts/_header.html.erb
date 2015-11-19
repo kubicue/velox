@@ -5,10 +5,8 @@
 </div>
 <div class="col-md-8">
 <ul class="nav navbar-nav navbar-right">
-  <li><a class="sub-nav" href="/ship">Ship</a></li>
+  <li><a class="sub-nav" href="/shipments">Ship</a></li>
   <li><a class="sub-nav" href="/track">Track</a></li>
-  <li><a class="sub-nav" href="/">Logistics</a></li>
-
   <% if current_user %>
   <li class="sub-nav"><%= link_to "Logout", '/logout' %></li>
   <% else %>
@@ -16,9 +14,6 @@
     <li class="sub-nav"><%= link_to 'Login', '/login' %></li>
 
     <li class="sub-nav"><%= link_to 'Signup', '/signup' %></li>
-  <% end %>
-  <% if flash.now[:message] %>
-    <b><%= flash.now[:message] %></b>
   <% end %>
 </ul>
 </div>
