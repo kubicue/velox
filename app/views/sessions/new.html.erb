@@ -5,9 +5,9 @@
 <div class="form-group well well-lg">
 <%= form_tag '/login' do %>
   <label for"email">Email<sup>*</sup></label><br/>
-  <%= text_field_tag :email %><br/>
+  <span style="width: 100%;"><%= text_field_tag :email %></span><br/>
   <label for"password">Password<sup>*</sup></label><br/>
-  <%= password_field_tag :password %><br/><br/>
+  <span style="width: 100%;"><%= password_field_tag :password %></span><br/><br/>
 
   <%= submit_tag "Submit", class: 'form-control btn btn-primary' %>
 <% end %>
