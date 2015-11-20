@@ -1,12 +1,11 @@
 <div class="container">
 <h3>Tracks#index</h3>
 <p>Find me in app/views/tracks/index.html.erb</p>
-<div id="as-root"></div><script>(function(e,t,n){var r,i=e.getElementsByTagName(t)[0];if(e.getElementById(n))return;r=e.createElement(t);r.id=n;r.src="//button.aftership.com/all.js";i.parentNode.insertBefore(r,i)})(document,"script","aftership-jssdk")</script>
-<div class="as-track-button" data-counter="true" data-support="true" data-width="400" data-size="large"></div>
+
 <%= form_tag("/track", method: "get") do %>
   <%= text_field_tag(:tracking_number) %>
   <%= submit_tag("Go") %>
 <% end %>
-<h4>My Tracking Number:<%=params[:tracking_number]%></h4>
-<iframe src="http://track.aftership.com/<%=params[:tracking_number]%>" width="70%"></iframe>
+<h4>My Tracking Number: <%=params[:tracking_number]%></h4>
+<iframe style="margin-left: -40px;" src="http://track.aftership.com/<%=params[:tracking_number]%>" width="98%" height="800px" frameborder="0"scrolling="no" ></iframe>
 </div>
