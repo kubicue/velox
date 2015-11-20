@@ -1,14 +1,21 @@
 <!-- app/views/users/new.html.erb -->
 <div class="container">
+  <div class="col-xs-2"></div>
+  <div class="col-xs-8">
 <h3>Signup!</h3>
-
+<div class="form-group well well-lg">
 <%= form_for :user, url: '/users' do |f| %>
-
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
+<label for="name"> Full Name<sup>*</sup></label>
+  <%= f.text_field :name, :class => "form-control" %>
+  <label for="email">Email<sup>*</sup></label>
+  <%= f.text_field :email, :class => "form-control" %>
+  <label for="password">Password<sup>*</sup></label>
+  <%= f.password_field :password, :class => "form-control" %>
+  <label for="password_confirmation">Password Confirmation<sup>*</sup></label>
+  <%= f.password_field :password_confirmation, :class => "form-control" %><br/>
+  <%= f.submit "Submit", :class => " form-control btn btn-primary"  %>
 <% end %>
+</div>
+<div class="col-xs-2"></div>
+ </div>
 </div>
