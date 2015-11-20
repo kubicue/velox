@@ -4,12 +4,13 @@ class ShipmentsController < ApplicationController
     wf = 'https://api.forecast.io/forecast/8b0e1f8b53a5e7e0e6b2a1b2ced3ceda/32.7150,-117.1625'
     @weather = HTTParty.get(wf).parsed_response
     @city = "Santa Monica, CA"
-  end
     @shipments = Shipment.all
   end
+
   def new
-    @shipments = Shipment.new
+
   end
+
   def create
  require 'easypost'
  EasyPost.api_key = 'sFfFy3otb2g0hjzjWaqB6A'
@@ -77,14 +78,10 @@ class ShipmentsController < ApplicationController
 
  shipment.insure(amount: 100)
 
- tracker = EasyPost::Tracker.create({
-    :tracking_code => params[:tracking_code],
-    :carrier => params[:carrier]
-  })
 
  puts shipment.insurance
 
  redirect_to shipment.postage_label.label_url
 
-
-  end
+end
+end
