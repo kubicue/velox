@@ -73,9 +73,16 @@ class ShipmentsController < ApplicationController
 
  shipment.insure(amount: 100)
 
+ tracker = EasyPost::Tracker.create({
+    :tracking_code => params[:tracking_code],
+    :carrier => params[:carrier]
+  })
+
  puts shipment.insurance
 
  redirect_to shipment.postage_label.label_url
+
+
   end
 
 end

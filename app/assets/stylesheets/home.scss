@@ -13,6 +13,7 @@ body{background: #f3f3f3;}
   ul.nav li.active a {
       color: #fff !important;
   }
+  label{color: rgb(140, 140, 140); display: block; font-size: 16px; line-height: 30px; font-weight: 400; margin-bottom: 5px; }
    .brand{font-weight: bold;font-size: 38.2px; margin-bottom: 20px;}
    .brand a{color: ghostwhite !important;}
    .brand a:hover{ background:none; text-decoration: none !important;}
@@ -61,7 +62,7 @@ body{background: #f3f3f3;}
    }
    .jumbo-purpose{color:#fff; font-size: 18.5px; line-height: 31.5px; font-weight: 300;
      margin-left: 10px; margin-bottom: 30px;}
-     
+
    .section-title{color: rgb(15,12,14); font-size:30px; font-weight: 700;
     line-height: 40px; margin-bottom: 20px;}
     .form-control{margin-bottom: 10px;}

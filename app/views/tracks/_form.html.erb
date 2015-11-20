@@ -1,0 +1,134 @@
+<div class="container">
+<form id="parcel-form" action="javascript:void(0)" accept-charset="UTF-8" method="post">
+
+<input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="HkVBfxfw7UinPT2xLKnjPIixB+GM11PnFnP6CUvprAwDbnPJ6digR6fbSbokYcV8thfLGoMHY5oYyYWF/vLR8Q==" type="hidden">
+<h6>
+From Address:
+</h6>
+<div class="row-fluid">
+<div class="col-xs-3">
+<label for="Name">Name</label>
+<input name="shipment[from_address][name]" id="shipment_from_address_name" placeholder="Dr. Steve Brule" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<label for="Company">Company</label>
+<input name="shipment[from_address][company]" id="shipment_from_address_company" placeholder="Brule Inc." class="form-control" type="text">
+</div>
+<div class="col-xs-4">
+<label for="Street_Address_1">Street address 1</label>
+<input name="shipment[from_address][street1]" id="shipment_from_address_street1" placeholder="179 N Harbor Dr" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Street_Address_2">Street address 2</label>
+<input name="shipment[from_address][street2]" id="shipment_from_address_street2" placeholder="#2" class="form-control" type="text">
+</div>
+</div>
+<div class="row-fluid">
+<div class="col-xs-3">
+<label for="City">City</label>
+<input name="shipment[from_address][city]" id="shipment_from_address_city" placeholder="Redondo Beach" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="State_Province">State/province</label>
+<input name="shipment[from_address][state]" id="shipment_from_address_state" placeholder="CA" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Postal_Code">Postal code</label>
+<input name="shipment[from_address][zip]" id="shipment_from_address_zip" placeholder="90277" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Country">Country</label>
+<input name="shipment[from_address][country]" id="shipment_from_address_country" placeholder="US" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<label for="Phone">Phone</label>
+<input name="shipment[from_address][phone]" id="shipment_from_address_phone" placeholder="(415) ESY-POST" class="form-control" type="text">
+</div>
+</div>
+<h6>
+To Address:
+</h6>
+<div class="row-fluid">
+<div class="col-xs-3">
+<label for="Name">Name</label>
+<input name="shipment[to_address][name]" id="shipment_to_address_name" placeholder="Cal Naughton Jr." class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<label for="Company">Company</label>
+<input name="shipment[to_address][company]" id="shipment_to_address_company" placeholder="Naughton Racing" class="form-control" type="text">
+</div>
+<div class="col-xs-4">
+<label for="Street_Address_1">Street address 1</label>
+<input name="shipment[to_address][street1]" id="shipment_to_address_street1" placeholder="300 Granelli Ave" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Street_Address_2">Street address 2</label>
+<input name="shipment[to_address][street2]" id="shipment_to_address_street2" placeholder="#9" class="form-control" type="text">
+</div>
+</div>
+<div class="row-fluid">
+<div class="col-xs-3">
+<label for="City">City</label>
+<input name="shipment[to_address][city]" id="shipment_to_address_city" placeholder="Half Moon Bay" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="State_Province">State/province</label>
+<input name="shipment[to_address][state]" id="shipment_to_address_state" placeholder="CA" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Postal_Code">Postal code</label>
+<input name="shipment[to_address][zip]" id="shipment_to_address_zip" placeholder="94019" class="form-control" type="text">
+</div>
+<div class="col-xs-2">
+<label for="Country">Country</label>
+<input name="shipment[to_address][country]" id="shipment_to_address_country" placeholder="US" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<label for="Phone">Phone</label>
+<input name="shipment[to_address][phone]" id="shipment_to_address_phone" placeholder="(415) 456-7890" class="form-control" type="text">
+</div>
+</div>
+<h6>
+Parcel:
+</h6>
+<div class="row-fluid">
+<div class="col-xs-3">Length (inches)</div>
+<div class="col-xs-3">Width (inches)</div>
+<div class="col-xs-3">Height (inches)</div>
+<div class="col-xs-3">Weight (ounces)</div>
+</div>
+<div class="row-fluid">
+<div class="col-xs-3">
+<input name="shipment[parcel][length]" id="shipment_parcel_length" placeholder="10.0" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<input name="shipment[parcel][width]" id="shipment_parcel_width" placeholder="8.0" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<input name="shipment[parcel][height]" id="shipment_parcel_height" placeholder="9.0" class="form-control" type="text">
+</div>
+<div class="col-xs-3">
+<input name="shipment[parcel][weight]" id="shipment_parcel_weight" placeholder="13.5" class="form-control" type="text">
+</div>
+</div>
+<br>
+<h6>
+USPS Rates only.
+</h6>
+<input name="commit" value="Find Rates" id="submit-parcel-form" class="submit-button btn btn-blue btn-mini" type="submit">
+<div id="spinner"></div>
+<div class="alert" id="rate-errors" style="">
+There is an error with your form.  Please fill the form out completely.
+</div>
+</form>
+<table class="table table-bordered table-striped table">
+<thead>
+<tr>
+<th>Service</th>
+<th>Price (USD)</th>
+<th>Carrier</th>
+</tr>
+</thead>
+<tbody id="parcel-form-results"></tbody>
+</table>
+</div>
