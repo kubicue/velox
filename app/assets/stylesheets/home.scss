@@ -14,8 +14,8 @@ body{background: #f3f3f3;}
       color: #fff !important;
   }
   label{color: rgb(140, 140, 140); display: block; font-size: 16px; line-height: 30px; font-weight: 400; margin-bottom: 5px; }
-  input[type=text]{width: 100%; display: block;}
-  input[type=password]{width: 100%; display: block;}
+  input[type=text]{width: 100% !important; display: block;}
+  input[type=password]{width: 100% !important; display: block;}
    .brand{font-weight: bold;font-size: 38.2px; margin-bottom: 20px;}
    .brand a{color: ghostwhite !important;}
    .brand a:hover{ background:none; text-decoration: none !important;}
