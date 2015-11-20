@@ -3,7 +3,7 @@ class TracksController < ApplicationController
 
   def index
     @track_number = params[:tracking_number]
-    @track_me = "http://track.aftership.com/#{@track_number}"
+    @track_me = "https://track.aftership.com/#{@track_number}"
   end
 
 end

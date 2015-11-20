@@ -1,5 +1,9 @@
 <div class="container">
   <h3>Ship or track</h3>
+  <%= link_to 'New Shipment', new_shipment_path %> Or <%= link_to 'Track Shipment', tracks_path %>
   <p><strong>Hello</strong>, <%= current_user.name %> happy shipping!</span></p>
-  
+  <h4><%=Time.now.strftime("%A %B %d %Y") %><br/>
+    <span class="glyphicon glyphicon-map-marker"></span> <span><strong> <%= @city %></strong></span></h4>
+  <p class="temp"><%=@weather['currently']['temperature'].floor %><sup class="sup">&deg; | F</sup></p>
+  <p class="summary"><%=@weather['currently']['summary'] %></p>
 </div>

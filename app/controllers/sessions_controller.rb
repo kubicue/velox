@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:notice] = "Login successful!"
 
-      redirect_to '/'
+      redirect_to '/shipments'
     else
       flash[:notice] = "Incorrect Username or Password. Please try again."
 
