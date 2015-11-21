@@ -47,13 +47,13 @@ body{background: #f3f3f3; color: #0c0a0a;}
      font-family: benton-sans,"Helvetica Neue",helvetica,arial,sans-serif;
      font-size: 14px;
      line-height: 20px;
-     height: 480px;
+     height: 500px;
 
    }
    .internal-fold{
      background: #ECE9E6; /* fallback for old browsers */
-     background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
-     background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     background: -webkit-linear-gradient(to left, #e5ece5 , #f1ffff); /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to left, #e5ece5 , #f1ffff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
      background-repeat: no-repeat;
      background-size: 100% 1000px;
      box-sizing: border-box;
@@ -90,15 +90,17 @@ body{background: #f3f3f3; color: #0c0a0a;}
      border-radius: 6px;
      padding: 4px;
      width: auto;
+     margin-right: 45px;
    }
    .temp{
-     font-size: 38.2px;
+     font-size: 58.2px;
      font-weight: 700;
-     line-height: 16.8833px;
+     line-height: 18.8833px;
+     margin-top: 28px;
    }
    .sup{
-     font-size: 23.2px;
-     font-weight: 400;
+     font-size: 28.2px;
+     font-weight: bolder;
    }
    .jumbo-title{
     border-spacing: 0px 0px;

@@ -6,16 +6,21 @@
     <span class="time-clock pull-right"><span class="glyphicon glyphicon-time"></span> <%=Time.now.strftime("%A %B %d %Y") %></span></p>
     <%end%>
   </div>
-  <div class="col-xs-6">
-  <h3>Ship or track</h3>
-  <%= link_to 'New Shipment', new_shipment_path %> Or <%= link_to 'Track Shipment', tracks_path %>
-  <%=@shipments.inspect%>
+
+  <div class="col-xs-8">
+  <a class="btn btn-link" href="/" role="button"><strong>&#171; Go to Main</strong></a>
+  <h3>Ship or Track</h3>
+  <p><span class="btn btn-default"><%= link_to 'New Shipment', new_shipment_path %></span> <strong>Or</strong> <span class="btn btn-default"><%= link_to 'Track Shipment', tracks_path %></span></p>
+  <%= render 'tabledata'%>
   </div>
-  <div class="col-xs-6">
-  <div class="pull-right">
-  <h4><span class="glyphicon glyphicon-map-marker"></span> <span><strong> <%= @city %></strong></span></h4>
-  <p class="temp"><%=@weather['currently']['temperature'].floor %><sup class="sup">&deg; | F</sup></p>
-  <p class="summary"><%=@weather['currently']['summary'] %></p>
+  <div class="col-xs-4">
+  <div style="margin-right: 45px;" class="pull-right">
+  <h3><span class="glyphicon glyphicon-map-marker"></span> <span><strong> <%= @city %></strong></span></h3>
+  <p class="temp"><%=@weather['currently']['temperature'].floor %><sup class="sup">&deg; | F</sup>
+    <span class="summary"><%=@weather['currently']['summary'] %></span></p>
+
+  <p style="font-weight: normal;">Precipitation:<%=@weather['currently']['precipProbability'] %><sup class="">&#37;</sup> | Humidity:<%=@weather['currently']['humidity'] %><sup class="">&#37;</sup></p>
+
 </div>
 </div>
 </div>
