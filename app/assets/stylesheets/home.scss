@@ -1,19 +1,24 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body{background: #f3f3f3;}
+body{background: #f3f3f3; color: #0c0a0a;}
+
      ul.nav li a, ul.nav li a:visited {
       color: #fff !important;
+      font-weight: bolder;
   }
   ul.nav li a:hover, ul.nav li a:active {
       color: #fff !important;
       background-color:rgba(36,56,103,0.5) !important;
       border-bottom: 1px solid rgb(26,40,77);
+
   }
   ul.nav li.active a {
       color: #fff !important;
+
   }
-  label{color: rgb(140, 140, 140); display: block; font-size: 16px; line-height: 30px; font-weight: 400; margin-bottom: 5px; }
+  ul.nav{margin-right:45px;}
+  label{color: rgb(15,10,12); display: block; font-size: 16px; line-height: 30px; font-weight: 400; margin-bottom: 5px; }
   input[type=text]{width: 100% !important; display: block;}
   input[type=password]{width: 100% !important; display: block;}
    .brand{font-weight: bold;font-size: 38.2px; margin-bottom: 20px;}
@@ -23,13 +28,58 @@ body{background: #f3f3f3;}
    .top-header{
     background-attachment: scroll;
     background-clip: border-box;
-    background-color: transparent;
-    background-image: url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
+    background-color: rgba(79,89,152, 0.4);
+    background: linear-gradient(to left, rgba(92, 38, 132, 0.7) 0%, rgba(79, 92, 153, 0.6) 58%, rgba(0, 0, 0, 0.8) 100%), url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
     background-origin: padding-box;
     background-position: 0% 0%;
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
+   }
+   .fold-board{
+     background: #5C258D; /* fallback for old browsers */
+     background: -webkit-linear-gradient(to left, #5C258D , #4389A2), url("track.jpg"); /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to left, #5C258D , #4389A2), url("track.jpg"); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     background-repeat: no-repeat;
+     background-size: 100% 1000px;
+     box-sizing: border-box;
+     color: rgb(63, 63, 68);
+     font-family: benton-sans,"Helvetica Neue",helvetica,arial,sans-serif;
+     font-size: 14px;
+     line-height: 20px;
+     height: 480px;
+
+   }
+   .internal-fold{
+     background: #ECE9E6; /* fallback for old browsers */
+     background: -webkit-linear-gradient(to left, #ECE9E6 , #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+     background: linear-gradient(to left, #ECE9E6 , #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     background-repeat: no-repeat;
+     background-size: 100% 1000px;
+     box-sizing: border-box;
+     color: rgb(63, 63, 68);
+     font-family: benton-sans,"Helvetica Neue",helvetica,arial,sans-serif;
+     font-size: 14px;
+     line-height: 20px;
+     height: 400px;
+   }
+   .user-hello{ background: rgb(255, 255, 255);
+      width: 98.7%;
+      border-left:1px solid white;
+      border-bottom-left: 1px solid white;
+      border-bottom-right: 1px solid white;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+}
+   .user-hello-copy{
+     color: #1f2120;
+     font-weight: normal;
+     font-size: 16.6px;
+     padding: 8px;
+   }
+   .time-clock{
+     margin-right: 36px;
+     font-weight: 600;
    }
    .copy-imp{font-size: 21px; line-height: 26px;font-weight: 300;}
    .summary{
@@ -67,6 +117,12 @@ body{background: #f3f3f3;}
 
    .section-title{color: rgb(15,12,14); font-size:30px; font-weight: 700;
     line-height: 40px; margin-bottom: 20px;}
+    .ship-block{
+      color:white;
+    }
+    .track-block{
+      color:white;
+    }
     .form-control{margin-bottom: 10px;}
     .pack-icon{margin-top: 150px;}
     .print-label{ padding-top: 180px;}

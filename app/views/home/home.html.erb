@@ -1,8 +1,19 @@
+<div class="fold-board">
 <div class="container">
-<div class="col-xs-6">
-<h3>Ship</h3>
+<div class="user-hello">
+  <% if current_user %>
+  <p class="user-hello-copy"><span><strong>Hello</strong>, <%= current_user.name %>, welcome back! </span>
+  <span class="time-clock pull-right"><span class="glyphicon glyphicon-time"></span> <%=Time.now.strftime("%A %B %d %Y") %></span></p>
+  <%end%>
 </div>
-<div class="col-xs-6">
+<div class="ship-block col-xs-6">
+<h3>Ship</h3>
+<%= image_tag "mailing_label.png" %>
+</div>
+<div class="track-block col-xs-6">
   <h3>Track</h3>
+  <%= image_tag "track-process.png" %>
+</div>
+
 </div>
 </div>
