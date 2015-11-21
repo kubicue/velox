@@ -1,0 +1,365 @@
+/* line 4, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+body {
+  background: #f3f3f3;
+  color: #0c0a0a;
+}
+
+/* line 6, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+ul.nav li a, ul.nav li a:visited {
+  color: #fff !important;
+  font-weight: bolder;
+}
+
+/* line 10, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+ul.nav li a:hover, ul.nav li a:active {
+  color: #fff !important;
+  background-color: rgba(36, 56, 103, 0.5) !important;
+  border-bottom: 1px solid #1a284d;
+}
+
+/* line 16, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+ul.nav li.active a {
+  color: #fff !important;
+}
+
+/* line 20, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+ul.nav {
+  margin-right: 45px;
+}
+
+/* line 21, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+label {
+  color: #0f0a0c;
+  display: block;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+/* line 22, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+input[type=text] {
+  width: 100% !important;
+  display: block;
+}
+
+/* line 23, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+input[type=password] {
+  width: 100% !important;
+  display: block;
+}
+
+/* line 24, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.brand {
+  font-weight: bold;
+  font-size: 38.2px;
+  margin-bottom: 20px;
+}
+
+/* line 25, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.brand a {
+  color: ghostwhite !important;
+}
+
+/* line 26, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.brand a:hover {
+  background: none;
+  text-decoration: none !important;
+}
+
+/* line 27, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.sub-nav {
+  font-weight: 600;
+  color: white;
+}
+
+/* line 28, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.top-header {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgba(79, 89, 152, 0.4);
+  background: linear-gradient(to left, rgba(92, 38, 132, 0.7) 0%, rgba(79, 92, 153, 0.6) 58%, rgba(0, 0, 0, 0.8) 100%), url("http://apod.nasa.gov/apod/image/1510/M16HubbleV4-X3walker1024.jpg");
+  background-origin: padding-box;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+}
+
+/* line 39, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.fold-board {
+  background: #5C258D;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #5C258D, #4389A2), url("track.jpg");
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #5C258D, #4389A2), url("track.jpg");
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  background-size: 100% 1000px;
+  box-sizing: border-box;
+  color: #3f3f44;
+  font-family: benton-sans,"Helvetica Neue",helvetica,arial,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  height: 480px;
+}
+
+/* line 53, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.internal-fold {
+  background: #ECE9E6;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #ECE9E6, #FFFFFF);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #ECE9E6, #FFFFFF);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
+  background-size: 100% 1000px;
+  box-sizing: border-box;
+  color: #3f3f44;
+  font-family: benton-sans,"Helvetica Neue",helvetica,arial,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  height: 400px;
+}
+
+/* line 66, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.user-hello {
+  background: white;
+  width: 98.7%;
+  border-left: 1px solid white;
+  border-bottom-left: 1px solid white;
+  border-bottom-right: 1px solid white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* line 74, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.user-hello-copy {
+  color: #1f2120;
+  font-weight: normal;
+  font-size: 16.6px;
+  padding: 8px;
+}
+
+/* line 80, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.time-clock {
+  margin-right: 36px;
+  font-weight: 600;
+}
+
+/* line 84, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.copy-imp {
+  font-size: 21px;
+  line-height: 26px;
+  font-weight: 300;
+}
+
+/* line 85, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.summary {
+  font-size: 16.2px;
+  font-weight: 600;
+  line-height: 15.8833px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  padding: 4px;
+  width: auto;
+}
+
+/* line 94, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.temp {
+  font-size: 38.2px;
+  font-weight: 700;
+  line-height: 16.8833px;
+}
+
+/* line 99, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.sup {
+  font-size: 23.2px;
+  font-weight: 400;
+}
+
+/* line 103, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.jumbo-title {
+  border-spacing: 0px 0px;
+  box-sizing: border-box;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 38.2px;
+  font-weight: 700;
+  line-height: 16.8833px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* line 115, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.jumbo-purpose {
+  color: #fff;
+  font-size: 18.5px;
+  line-height: 31.5px;
+  font-weight: 300;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+/* line 118, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.section-title {
+  color: #0f0c0e;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+
+/* line 120, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.ship-block {
+  color: white;
+}
+
+/* line 123, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.track-block {
+  color: white;
+}
+
+/* line 126, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.form-control {
+  margin-bottom: 10px;
+}
+
+/* line 127, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.pack-icon {
+  margin-top: 150px;
+}
+
+/* line 128, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.print-label {
+  padding-top: 180px;
+}
+
+/* line 129, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.btn-basic {
+  display: block;
+  color: white;
+  font-weight: 700;
+  line-height: 16px;
+  background: #2c3861;
+  background-size: auto;
+  background-clip: border-box;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 260px;
+}
+
+/* line 141, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.btn-basic a {
+  color: white;
+}
+
+/* line 142, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/home.scss */
+.footsie {
+  margin-top: 40px;
+}
+/* line 1, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a {
+  color: #000;
+}
+/* line 24, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a:visited {
+  color: #666;
+}
+/* line 28, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+a:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+/* line 35, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 40, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#notice {
+  color: green;
+}
+
+/* line 44, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 50, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 58, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 69, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/bewd_homework/final_project/velox/app/assets/stylesheets/scaffolds.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+/* line 4, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/tracks.scss */
+iframe:focus {
+  outline: none;
+}
+
+/* line 8, /Users/ahoyfig/Public/html/rb/GA/src/BEWDHW/src/velox/app/assets/stylesheets/tracks.scss */
+iframe[seamless] {
+  display: block;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
