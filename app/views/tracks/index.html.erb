@@ -1,9 +1,16 @@
 <div class="container">
+  <div class="user-hello">
+    <% if current_user %>
+    <p class="user-hello-copy"><span><strong>Hello</strong>, <%= current_user.name %>, welcome back! </span>
+    <span class="time-clock pull-right"><span class="glyphicon glyphicon-time"></span> <%=Time.now.strftime("%A %B %d %Y") %></span></p>
+    <%end%>
+  </div>
+  <a class="btn btn-link" href="/" role="button"><strong>&#171; Go to Main</strong></a>  
 <h3>Tracks Shipments</h3>
 <h4>My Tracking Number: <%=params[:tracking_number]%></h4>
 <%= form_tag("/track", method: "get") do %>
 <p style="width: 680px;"><%= text_field_tag(:tracking_number) %></p>
-  <%= submit_tag("Track", :class => "btn btn-primary" ) %>
+<%= submit_tag("Track", :class => "btn btn-basic" ) %>
 <% end %>
 <iframe style="margin-left: -40px; clip:rect(190px,1100px,800px,250px);" seamless src="https://track.aftership.com/<%=params[:tracking_number]%>" width="98%" height="800px" frameborder="0"scrolling="no" ></iframe>
 </div>
