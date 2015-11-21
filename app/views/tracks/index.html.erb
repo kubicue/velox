@@ -1,11 +1,9 @@
 <div class="container">
-<h3>Tracks#index</h3>
-<p>Find me in app/views/tracks/index.html.erb</p>
-
-<%= form_tag("/track", method: "get") do %>
-  <%= text_field_tag(:tracking_number) %>
-  <%= submit_tag("Track") %>
-<% end %>
+<h3>Tracks Shipments</h3>
 <h4>My Tracking Number: <%=params[:tracking_number]%></h4>
+<%= form_tag("/track", method: "get") do %>
+<p style="width: 680px;"><%= text_field_tag(:tracking_number) %></p>
+  <%= submit_tag("Track", :class => "btn btn-primary" ) %>
+<% end %>
 <iframe style="margin-left: -40px; clip:rect(190px,1100px,800px,250px);" seamless src="https://track.aftership.com/<%=params[:tracking_number]%>" width="98%" height="800px" frameborder="0"scrolling="no" ></iframe>
 </div>
