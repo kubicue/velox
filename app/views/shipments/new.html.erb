@@ -1,4 +1,14 @@
+<div class="internal-fold">
 <div class="container">
-  <h3>Create Ship Label</h3>
+  <div class="user-hello">
+    <% if current_user %>
+    <p class="user-hello-copy"><span><strong>Hello</strong>, <%= current_user.name %>, welcome back! </span>
+    <span class="time-clock pull-right"><span class="glyphicon glyphicon-time"></span> <%=Time.now.strftime("%A %B %d %Y") %></span></p>
+    <%end%>
+  </div>
+  <a class="btn btn-link" href="/" role="button"><strong>&#171; Go to Main</strong></a>
+  <h3>Create Shipping Label</h3>
+  <p><span class="btn btn-default btn-sm"><%= link_to 'New Shipment', new_shipment_path %></span> <strong>Or</strong> <span class="btn btn-default btn-sm"><%= link_to 'Track Shipment', tracks_path %></span></p>
   <%= render 'form'%>
+</div>
 </div>
