@@ -449,6 +449,24 @@ html, body {
   transform: translateY(-1px);
 }
 
+/* Parcel Dimension Fields Row (Side-by-side balanced alignment) */
+.parcel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.parcel-grid .form-group {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .parcel-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Subtle Rate Cards */
 .rates-stack {
   display: flex;
