@@ -1,35 +1,37 @@
 # velox ⚡
 
-> **Minimalist Bauhaus-inspired shipping & dispatch station. 100% pure web primitives — zero frameworks, zero build tools, zero dependencies, minimal files.**
+> **Refined, accessible shipping & dispatch station. 100% pure web primitives — zero frameworks, zero build tools, zero dependencies, minimal files.**
 
-Inspired by the iconic **Bauhaus** geometric aesthetic (*Form Follows Function*) and Magdalena Droste's Bauhaus book cover, Velox is a local-first shipping station and scannable 4×6″ thermal label generator.
-
----
-
-## 🎨 Bauhaus Design Philosophy
-
-- **Form Follows Function**: No unnecessary decorators, no rounded corners, no bloated dependencies.
-- **Primary Geometric Palette**: Cobalt Blue (`#0050aa`), Canary Yellow (`#fed100`), Cadmium Red (`#df2828`), Stark Black (`#121212`), Concrete Gray (`#9e9e9e`), and Cream Canvas (`#f5f5f0`).
-- **Heavy Grotesque Typography**: Lowercase bold headings, stark contrast, and strict geometric right angles (`border: 3px solid #121212`).
+Inspired by the clean geometric harmony of **Bauhaus**, Velox delivers an ultra-fast, local-first shipping station and scannable 4×6″ thermal label generator.
 
 ---
 
-## ⚡ Minimal Architecture (Only 4 Files)
+## 🎨 Subtle Design Language & Accessibility
 
-The entire application runs with the absolute minimum number of files:
+- **Understated Primary Color Harmony**: Deep Slate (`#0f172a`), Cobalt Blue (`#1e40af`), Warm Amber (`#d97706`), and Crimson (`#dc2626`) woven into subtle gradients, clean borders, and calm surfaces.
+- **Accessible & High-Contrast (WCAG 2.1 AA/AAA)**:
+  - All text meets or exceeds 4.5:1 contrast against light and dark surfaces.
+  - High-visibility focus indicators (`:focus-visible`) for complete keyboard navigation.
+  - Full WAI-ARIA authoring practices (`role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`, and Arrow key navigation).
+  - Respects user preference for reduced motion (`prefers-reduced-motion`).
+- **Smooth Micro-Interactions**: Soft hover transitions and elevated card states for an enjoyable desktop feel.
+
+---
+
+## ⚡ Ultra-Minimal Architecture (Only 4 Files)
 
 ```
 velox/
-├── index.html       # The complete application: UI, Bauhaus CSS, Vector Barcode Engine,
+├── index.html       # The complete application: Accessible UI, Design System, Vector Barcode Engine,
 │                    # Local IndexedDB, Rate Engine, Live 4×6″ Thermal Preview & Print
 ├── sw.js            # PWA Service Worker enabling 100% offline warehouse operation
 ├── manifest.json    # Web App Manifest for standalone desktop/mobile installation
-└── icons/icon.svg   # Bauhaus geometric vector icon
+└── icons/icon.svg   # Refined geometric vector icon
 ```
 
 ---
 
-## ✨ Features
+## ✨ Core Capabilities
 
 - 🏷️ **4×6″ Thermal Label Engine**: Precision `@page { size: 4in 6in; margin: 0; }` styling prints only the thermal label directly from the browser to any 4×6″ roll printer (Rollo, Zebra, Brother, MUNBYN).
 - 📊 **Pure Vector Code-128 Barcodes**: Built-in SVG barcode generator with zero external libraries.
@@ -53,4 +55,4 @@ Open `http://localhost:8080` in any browser or install it as a standalone deskto
 
 ## 📜 License
 
-MIT License. Designed with Bauhaus principles for the modern web.
+MIT License.

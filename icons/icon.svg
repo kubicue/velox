@@ -1,28 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="500" height="700">
-  <!-- Bauhaus Canvas Background -->
-  <rect width="500" height="700" fill="#f4f4f0" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e3a8a" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e40af" />
+      <stop offset="45%" stop-color="#0284c7" />
+      <stop offset="75%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+  </defs>
 
-  <!-- Bauhaus Book Typography Header -->
-  <text x="240" y="95" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="64" fill="#121212" letter-spacing="-2">velox</text>
-  <text x="242" y="125" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14" fill="#121212" letter-spacing="0">shipping station</text>
-  <text x="375" y="125" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="700" font-size="14" fill="#121212" letter-spacing="0">zero framework</text>
+  <!-- Deep Slate/Blue Canvas -->
+  <rect width="512" height="512" rx="40" fill="url(#bgGrad)" />
 
-  <!-- Left Blue Column -->
-  <rect x="0" y="0" width="90" height="595" fill="#0050aa" />
+  <!-- Subtle Bauhaus Harmony Accent Top Bar -->
+  <rect x="48" y="48" width="416" height="12" rx="4" fill="url(#accentGrad)" />
 
-  <!-- Yellow Horizontal Bar -->
-  <rect x="90" y="185" width="380" height="105" fill="#fed100" />
+  <!-- Clean Stylized "V" Monogram with Shipping Geometric Motif -->
+  <g fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M140 160 L256 380 L372 160" />
+    <path d="M200 240 L312 240" stroke="#f59e0b" stroke-width="16" />
+  </g>
 
-  <!-- Central Black Field -->
-  <rect x="90" y="290" width="300" height="305" fill="#121212" />
-
-  <!-- Right Red Column -->
-  <rect x="390" y="290" width="80" height="305" fill="#df2828" />
-
-  <!-- Bottom Gray Horizontal Bar -->
-  <rect x="0" y="595" width="390" height="105" fill="#9e9e9e" />
-
-  <!-- Central Black Box Typography -->
-  <text x="240" y="430" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="2">4×6″</text>
-  <text x="240" y="470" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="2">LABEL</text>
+  <!-- Barcode Micro-Graphic at the base -->
+  <g fill="#ffffff" opacity="0.85">
+    <rect x="156" y="420" width="8" height="32" />
+    <rect x="174" y="420" width="16" height="32" />
+    <rect x="200" y="420" width="8" height="32" />
+    <rect x="218" y="420" width="24" height="32" />
+    <rect x="252" y="420" width="8" height="32" />
+    <rect x="270" y="420" width="16" height="32" />
+    <rect x="296" y="420" width="20" height="32" />
+    <rect x="326" y="420" width="8" height="32" />
+    <rect x="344" y="420" width="14" height="32" />
+  </g>
 </svg>
