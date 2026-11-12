@@ -27,7 +27,8 @@ velox/
 
 ## ⚡ Design & Accessibility (WCAG 2.1 AA / AAA)
 
-- **Subtle Bauhaus Palette**: Deep Slate (`#0f172a`), Cobalt Blue (`#1e40af`), Warm Amber (`#d97706`), and Crimson (`#dc2626`) woven into understated gradients and clean borders.
+- **Dark Operations Palette**: Deep Noir (`#161616`), Deep Forest Pine (`#07322a`), Muted Sage Mist (`#b3c1be`), and Warm Alabaster (`#e4e2df`).
+- **Surgical Vertical Balance**: Consistent label heights (`18px`), bottom margins (`6px`), and input dimensions (`42px`) ensuring seamless baseline alignment across multi-column rows.
 - **Accessible Micro-Interactions**: Smooth hover transitions (`cubic-bezier(0.16, 1, 0.3, 1)`), subtle card elevation, and interactive rate cards.
 - **Full WAI-ARIA Navigation**: Keyboard-driven tab switching (`←` / `→` arrow keys, `Home`, `End`), high-contrast focus rings (`:focus-visible`), and screen-reader accessible labeling.
 - **Reduced Motion Support**: Automatically respects `prefers-reduced-motion: reduce`.

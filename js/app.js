@@ -590,21 +590,21 @@ function runTracking(trackingNum) {
   const displayTracking = clean || currentTracking;
 
   container.innerHTML = `
-    <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; color: var(--c-charcoal);">
+    <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; color: var(--c-alabaster);">
       Tracking: ${escapeHTML(displayTracking)}
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
-      <div style="border-left: 3px solid var(--c-blue); padding-left: 14px;">
-        <div style="font-weight: 700; color: var(--c-charcoal);">In Transit — Out for Delivery</div>
-        <div style="font-size: 0.8rem; color: var(--c-muted);">Local Carrier Station • ${escapeHTML(new Date().toLocaleTimeString())}</div>
+      <div style="border-left: 3px solid var(--c-forest-border); padding-left: 14px;">
+        <div style="font-weight: 700; color: var(--c-alabaster);">In Transit — Out for Delivery</div>
+        <div style="font-size: 0.8rem; color: var(--c-sage);">Local Carrier Station • ${escapeHTML(new Date().toLocaleTimeString())}</div>
       </div>
-      <div style="border-left: 3px solid var(--c-yellow-accent); padding-left: 14px;">
-        <div style="font-weight: 700; color: var(--c-charcoal);">Processed through Regional Sorting Facility</div>
-        <div style="font-size: 0.8rem; color: var(--c-muted);">Transit Distribution Center • Yesterday</div>
+      <div style="border-left: 3px solid var(--c-sage); padding-left: 14px;">
+        <div style="font-weight: 700; color: var(--c-alabaster);">Processed through Regional Sorting Facility</div>
+        <div style="font-size: 0.8rem; color: var(--c-sage);">Transit Distribution Center • Yesterday</div>
       </div>
-      <div style="border-left: 3px solid #10b981; padding-left: 14px;">
-        <div style="font-weight: 700; color: var(--c-charcoal);">Shipping Label Generated / Station Intake Verified</div>
-        <div style="font-size: 0.8rem; color: var(--c-muted);">Velox Internal Station • Two days ago</div>
+      <div style="border-left: 3px solid var(--c-forest); padding-left: 14px;">
+        <div style="font-weight: 700; color: var(--c-alabaster);">Shipping Label Generated / Station Intake Verified</div>
+        <div style="font-size: 0.8rem; color: var(--c-sage);">Velox Internal Station • Two days ago</div>
       </div>
     </div>
   `;
@@ -615,7 +615,7 @@ function updatePwaStatus() {
   const isOnline = navigator.onLine;
   if (badge) {
     badge.innerHTML = `
-      <span class="status-dot" style="background-color: ${isOnline ? "#10b981" : "#f59e0b"}" aria-hidden="true"></span>
+      <span class="status-dot" style="background-color: ${isOnline ? "#34d399" : "#fbbf24"}" aria-hidden="true"></span>
       <span>${isOnline ? "offline ready" : "offline mode"}</span>
     `;
   }

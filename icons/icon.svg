@@ -1,39 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e3a8a" />
+    <linearGradient id="dossBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161616" />
+      <stop offset="60%" stop-color="#1a1c1b" />
+      <stop offset="100%" stop-color="#07322a" />
     </linearGradient>
-    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1e40af" />
-      <stop offset="45%" stop-color="#0284c7" />
-      <stop offset="75%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#dc2626" />
+    <linearGradient id="accentStripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#07322a" />
+      <stop offset="50%" stop-color="#0d4a3e" />
+      <stop offset="80%" stop-color="#b3c1be" />
+      <stop offset="100%" stop-color="#e4e2df" />
     </linearGradient>
   </defs>
 
-  <!-- Deep Slate/Blue Canvas -->
-  <rect width="512" height="512" rx="40" fill="url(#bgGrad)" />
+  <!-- Dark Noir Canvas (#161616) -->
+  <rect width="512" height="512" rx="48" fill="url(#dossBg)" stroke="rgba(179, 193, 190, 0.25)" stroke-width="4" />
 
-  <!-- Subtle Bauhaus Harmony Accent Top Bar -->
-  <rect x="48" y="48" width="416" height="12" rx="4" fill="url(#accentGrad)" />
+  <!-- Accent Top Border -->
+  <rect x="56" y="52" width="400" height="10" rx="3" fill="url(#accentStripe)" />
 
-  <!-- Clean Stylized "V" Monogram with Shipping Geometric Motif -->
-  <g fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M140 160 L256 380 L372 160" />
-    <path d="M200 240 L312 240" stroke="#f59e0b" stroke-width="16" />
+  <!-- Technical Wireframe Grid Globe (Inspired by the DOSS image) -->
+  <g stroke="#b3c1be" stroke-width="6" fill="none" opacity="0.3">
+    <circle cx="256" cy="310" r="90" />
+    <ellipse cx="256" cy="310" rx="90" ry="34" />
+    <ellipse cx="256" cy="310" rx="36" ry="90" />
+    <line x1="256" y1="200" x2="256" y2="420" stroke-dasharray="8 6" />
   </g>
 
-  <!-- Barcode Micro-Graphic at the base -->
-  <g fill="#ffffff" opacity="0.85">
-    <rect x="156" y="420" width="8" height="32" />
-    <rect x="174" y="420" width="16" height="32" />
-    <rect x="200" y="420" width="8" height="32" />
-    <rect x="218" y="420" width="24" height="32" />
-    <rect x="252" y="420" width="8" height="32" />
-    <rect x="270" y="420" width="16" height="32" />
-    <rect x="296" y="420" width="20" height="32" />
-    <rect x="326" y="420" width="8" height="32" />
-    <rect x="344" y="420" width="14" height="32" />
+  <!-- Clean Stylized "V" Monogram in Alabaster (#e4e2df) -->
+  <g fill="none" stroke="#e4e2df" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M150 160 L256 370 L362 160" />
+  </g>
+
+  <!-- Sage Mist Crossbar (#b3c1be) -->
+  <line x1="204" y1="230" x2="308" y2="230" stroke="#b3c1be" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Barcode Micro-Graphic at the base (#e4e2df) -->
+  <g fill="#e4e2df" opacity="0.8">
+    <rect x="156" y="420" width="8" height="34" />
+    <rect x="174" y="420" width="16" height="34" />
+    <rect x="200" y="420" width="8" height="34" />
+    <rect x="218" y="420" width="24" height="34" />
+    <rect x="252" y="420" width="8" height="34" />
+    <rect x="270" y="420" width="16" height="34" />
+    <rect x="296" y="420" width="20" height="34" />
+    <rect x="326" y="420" width="8" height="34" />
+    <rect x="344" y="420" width="14" height="34" />
   </g>
 </svg>
