@@ -3,231 +3,1355 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velox — Modern Shipping & Label Generator</title>
-  <meta name="description" content="Local-first shipping label creator inspired by Shippo, built entirely with modern web primitives.">
+  <title>velox — bauhaus shipping station</title>
+  <meta name="description" content="Local-first shipping label generator and tracking station inspired by Bauhaus geometry and modern web primitives.">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
   <link rel="apple-touch-icon" href="icons/icon.svg">
-  <meta name="theme-color" content="#1e3a8a">
+  <meta name="theme-color" content="#121212">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/print.css">
+
+  <style>
+    /* ==========================================================================
+       BAUHAUS DESIGN SYSTEM — VELOX
+       Form Follows Function • Pure Geometry • Primary Colors • Zero Frameworks
+       ========================================================================== */
+    :root {
+      --b-black: #121212;
+      --b-white: #ffffff;
+      --b-canvas: #f5f5f0;
+      --b-blue: #0050aa;
+      --b-yellow: #fed100;
+      --b-red: #df2828;
+      --b-gray: #9e9e9e;
+      --b-gray-light: #e5e5df;
+      --b-border: 3px solid var(--b-black);
+      --b-border-thin: 1.5px solid var(--b-black);
+
+      --font-bauhaus: "Helvetica Neue", "Arial Black", Arial, -apple-system, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important; /* Strict Bauhaus geometric right-angles */
+    }
+
+    html, body {
+      font-family: var(--font-bauhaus);
+      background-color: var(--b-canvas);
+      color: var(--b-black);
+      line-height: 1.35;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    /* --- Bauhaus Composition Layout --- */
+    .bauhaus-root {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Left Bauhaus Blue Spine */
+    .bauhaus-spine {
+      width: 72px;
+      background-color: var(--b-blue);
+      border-right: var(--b-border);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      color: var(--b-white);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      user-select: none;
+    }
+
+    .spine-title {
+      font-size: 1.75rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+    }
+
+    .spine-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      font-weight: 700;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* Center Main Frame */
+    .bauhaus-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Yellow Navigation & Status Band */
+    .bauhaus-top-band {
+      background-color: var(--b-yellow);
+      border-bottom: var(--b-border);
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .brand-block {
+      padding: 20px 32px;
+      border-right: var(--b-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand-logo {
+      font-size: 2.75rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+      text-transform: lowercase;
+      color: var(--b-black);
+    }
+
+    .brand-sub {
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+      text-transform: lowercase;
+    }
+
+    .bauhaus-nav {
+      display: flex;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .nav-btn {
+      padding: 16px 24px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-transform: lowercase;
+      background: none;
+      border: none;
+      border-right: var(--b-border);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 120ms ease;
+    }
+
+    .nav-btn:hover {
+      background-color: var(--b-white);
+    }
+
+    .nav-btn.active {
+      background-color: var(--b-black);
+      color: var(--b-white);
+    }
+
+    .status-block {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 28px;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border: var(--b-border-thin);
+      background-color: var(--b-white);
+    }
+
+    .pill-offline {
+      background-color: var(--b-white);
+      color: var(--b-black);
+    }
+
+    /* Main Bauhaus Workspace Split Grid */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      flex: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .work-panel {
+      padding: 32px;
+      border-right: var(--b-border);
+      background-color: var(--b-canvas);
+    }
+
+    /* Right Bauhaus Preview Column with Red Border */
+    .preview-panel {
+      background-color: var(--b-white);
+      border-left: 12px solid var(--b-red);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .panel-header {
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: lowercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: var(--b-border);
+      padding-bottom: 12px;
+    }
+
+    /* Bauhaus Forms & Fieldsets */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .b-fieldset {
+      border: var(--b-border);
+      background-color: var(--b-white);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .b-legend {
+      background-color: var(--b-black);
+      color: var(--b-white);
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: lowercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      margin-left: -4px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .b-input, .b-select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: var(--b-border);
+      background-color: var(--b-white);
+      outline: none;
+      transition: background-color 100ms;
+    }
+
+    .b-input:focus, .b-select:focus {
+      background-color: #fff9db;
+    }
+
+    /* Buttons */
+    .b-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 900;
+      text-transform: lowercase;
+      letter-spacing: 0.04em;
+      border: var(--b-border);
+      background-color: var(--b-black);
+      color: var(--b-white);
+      cursor: pointer;
+      transition: transform 80ms, background-color 80ms;
+    }
+
+    .b-btn:hover {
+      background-color: var(--b-yellow);
+      color: var(--b-black);
+    }
+
+    .b-btn:active {
+      transform: translate(2px, 2px);
+    }
+
+    .b-btn-secondary {
+      background-color: var(--b-white);
+      color: var(--b-black);
+    }
+
+    .b-btn-secondary:hover {
+      background-color: var(--b-gray-light);
+    }
+
+    .b-btn-red {
+      background-color: var(--b-red);
+      color: var(--b-white);
+    }
+
+    .b-btn-red:hover {
+      background-color: var(--b-black);
+      color: var(--b-white);
+    }
+
+    /* Rate Cards */
+    .rate-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .rate-box {
+      border: var(--b-border);
+      background-color: var(--b-white);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 100ms ease;
+    }
+
+    .rate-box:hover {
+      background-color: #fbfbf0;
+      border-color: var(--b-blue);
+    }
+
+    .rate-box.active {
+      background-color: var(--b-black);
+      color: var(--b-white);
+    }
+
+    .rate-box.active .rate-price {
+      color: var(--b-yellow);
+    }
+
+    .rate-title {
+      font-weight: 900;
+      font-size: 1rem;
+      text-transform: lowercase;
+    }
+
+    .rate-desc {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      font-weight: 600;
+    }
+
+    .rate-price {
+      font-size: 1.35rem;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    /* Bauhaus Weather & Dispatch Widget */
+    .bauhaus-hero-block {
+      background-color: var(--b-black);
+      color: var(--b-white);
+      border: var(--b-border);
+      padding: 24px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-numeral {
+      position: absolute;
+      right: 16px;
+      bottom: -16px;
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.08);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Table Styles */
+    .b-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: var(--b-border);
+      background-color: var(--b-white);
+      font-size: 0.85rem;
+    }
+
+    .b-table th, .b-table td {
+      border: var(--b-border-thin);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .b-table th {
+      background-color: var(--b-yellow);
+      font-weight: 900;
+      text-transform: lowercase;
+      letter-spacing: 0.05em;
+    }
+
+    .b-table tr:hover td {
+      background-color: #fffde6;
+    }
+
+    /* ==========================================================================
+       4" x 6" THERMAL SHIPPING LABEL SPECIFICATION
+       ========================================================================== */
+    .thermal-label-wrap {
+      width: 4in;
+      min-height: 6in;
+      background: #ffffff;
+      color: #000000;
+      border: 3px solid #000000;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      box-shadow: 6px 6px 0px rgba(18, 18, 18, 0.15);
+    }
+
+    .l-header {
+      display: flex;
+      border-bottom: 3px solid #000000;
+      height: 0.9in;
+    }
+
+    .l-logo {
+      flex: 1;
+      padding: 0.08in;
+      border-right: 3px solid #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .l-carrier {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .l-service-sub {
+      font-size: 0.75rem;
+      font-weight: 800;
+      margin-top: 3px;
+    }
+
+    .l-indicia {
+      width: 1.45in;
+      padding: 0.06in;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.2;
+    }
+
+    .l-indicia-box {
+      border: 1.5px solid #000000;
+      padding: 4px;
+      width: 90%;
+    }
+
+    .l-banner {
+      background-color: #000000;
+      color: #ffffff;
+      text-align: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+      letter-spacing: 0.06em;
+      padding: 0.05in 0;
+      text-transform: uppercase;
+    }
+
+    .l-addresses {
+      padding: 0.08in;
+      border-bottom: 3px solid #000000;
+      min-height: 1.7in;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .l-from {
+      font-size: 0.72rem;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .l-to {
+      margin-left: 0.25in;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+
+    .l-to-name {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+
+    .l-barcode-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.1in 0.05in;
+      border-bottom: 3px solid #000000;
+    }
+
+    .l-barcode-svg {
+      width: 96%;
+      height: 1.15in;
+    }
+
+    .l-tracking-digits {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      margin-top: 0.04in;
+      text-align: center;
+    }
+
+    .l-footer {
+      display: flex;
+      height: 0.75in;
+    }
+
+    .l-routing {
+      flex: 1;
+      padding: 0.08in;
+      border-right: 3px solid #000000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .l-routing-zip {
+      font-size: 1.45rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+    }
+
+    .l-meta {
+      width: 1.5in;
+      padding: 0.08in;
+      font-size: 0.65rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    /* Print Formatting */
+    @page {
+      size: 4in 6in;
+      margin: 0;
+    }
+
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printable-thermal-label, #printable-thermal-label * {
+        visibility: visible !important;
+      }
+      #printable-thermal-label {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 4in !important;
+        height: 6in !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- App Header -->
-  <header class="app-header">
-    <div class="header-container">
-      <a href="index.html" class="brand-link">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-        </svg>
-        VELOX
-        <span class="brand-badge">Station</span>
-      </a>
+  <div class="bauhaus-root">
+    <!-- Left Blue Bauhaus Spine -->
+    <aside class="bauhaus-spine">
+      <span class="spine-title">velox</span>
+      <span class="spine-sub">1919 — 2026</span>
+    </aside>
 
-      <nav class="main-nav" aria-label="Main Navigation">
-        <a href="index.html" class="nav-link active">Dashboard</a>
-        <a href="ship.html" class="nav-link">New Shipment</a>
-        <a href="track.html" class="nav-link">Track</a>
-      </nav>
-
-      <div class="header-actions">
-        <span id="connection-status-badge" class="badge badge-success" title="Local PWA Active">⚡ Offline Ready</span>
-        <button id="theme-toggle-btn" class="btn btn-secondary btn-sm" title="Toggle theme">🌓 Theme</button>
-        <button id="settings-modal-btn" class="btn btn-secondary btn-sm">⚙️ Settings</button>
-        <a href="ship.html" class="btn btn-primary btn-sm">+ Create Label</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Dashboard Content -->
-  <main class="app-main">
-    <header class="page-header">
-      <div>
-        <h1 class="page-title">Shipping Dashboard</h1>
-        <p class="page-subtitle">Manage recent shipments, print 4×6″ thermal labels, and track parcels.</p>
-      </div>
-      <div>
-        <a href="ship.html" class="btn btn-primary btn-lg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          Create New Shipment
-        </a>
-      </div>
-    </header>
-
-    <!-- Top Grid: Weather Widget & Quick Metrics -->
-    <section class="grid-dashboard" style="margin-bottom: var(--space-8);">
-      <!-- Weather Card (Replacing legacy Forecast.io) -->
-      <div id="weather-container" class="weather-card">
-        <div>
-          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.85;">Current Weather & Dispatch</div>
-          <h2 id="weather-city" style="font-size: 1.5rem; color: #ffffff; margin-top: 4px;">Loading local forecast...</h2>
-          <div id="weather-condition" style="font-size: 1rem; margin-top: 4px;">Fetching weather data...</div>
+    <!-- Main Application Frame -->
+    <div class="bauhaus-content">
+      <!-- Top Yellow Navigation & Status Bar -->
+      <header class="bauhaus-top-band">
+        <div class="brand-block">
+          <h1 class="brand-logo">velox</h1>
+          <span class="brand-sub">shipping & dispatch station</span>
         </div>
-        <div style="display: flex; align-items: center; gap: var(--space-4);">
-          <span id="weather-icon" style="font-size: 3rem;">🌤️</span>
-          <div class="weather-details">
-            <div id="weather-temp" class="weather-temp">--°</div>
-            <div id="weather-humidity">Humidity: --%</div>
+
+        <nav class="bauhaus-nav">
+          <button id="tab-btn-ship" class="nav-btn active" data-tab="tab-ship">01 create label</button>
+          <button id="tab-btn-track" class="nav-btn" data-tab="tab-track">02 track parcel</button>
+          <button id="tab-btn-manifest" class="nav-btn" data-tab="tab-manifest">03 manifest archive</button>
+          <button id="tab-btn-settings" class="nav-btn" data-tab="tab-settings">04 settings</button>
+        </nav>
+
+        <div class="status-block">
+          <span id="pwa-status-badge" class="pill pill-offline">⚡ offline ready</span>
+        </div>
+      </header>
+
+      <!-- Main Split Workspace -->
+      <div class="workspace-grid">
+        <!-- Center Work Panel -->
+        <main class="work-panel">
+          <!-- Bauhaus Hero Status & Weather Block -->
+          <div class="bauhaus-hero-block">
+            <div class="hero-numeral">4×6″</div>
+            <div>
+              <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--b-yellow);">DISPATCH INTELLIGENCE</div>
+              <h2 id="weather-location" style="font-size: 1.45rem; font-weight: 900; margin-top: 2px;">Santa Monica Station</h2>
+              <div id="weather-summary" style="font-size: 0.95rem; opacity: 0.9; margin-top: 2px;">Loading weather...</div>
+            </div>
+            <div style="text-align: right; z-index: 1;">
+              <div id="weather-temp" style="font-size: 2.5rem; font-weight: 900; font-family: var(--font-mono); color: var(--b-yellow);">72°F</div>
+              <div id="shipment-counter-text" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">0 labels queued</div>
+            </div>
           </div>
-        </div>
+
+          <!-- TAB 01: SHIPMENT CREATION -->
+          <section id="tab-ship" class="tab-content">
+            <form id="velox-form" novalidate>
+              <div class="field-grid">
+                <!-- SENDER -->
+                <fieldset class="b-fieldset">
+                  <legend class="b-legend">01 sender (from)</legend>
+                  <div class="form-group">
+                    <label class="form-label" for="fname">Shipper Name / Station *</label>
+                    <input type="text" id="fname" class="b-input" required value="Bauhaus Station 01">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="fcompany">Company / Department</label>
+                    <input type="text" id="fcompany" class="b-input" value="Velox Logistics">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="fstreet">Street Address *</label>
+                    <input type="text" id="fstreet" class="b-input" required value="1540 2nd St">
+                  </div>
+                  <div style="display: flex; gap: 8px;">
+                    <div class="form-group" style="flex: 2;">
+                      <label class="form-label" for="fcity">City *</label>
+                      <input type="text" id="fcity" class="b-input" required value="Santa Monica">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                      <label class="form-label" for="fstate">State *</label>
+                      <input type="text" id="fstate" class="b-input" required maxlength="2" value="CA" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                      <label class="form-label" for="fzip">ZIP *</label>
+                      <input type="text" id="fzip" class="b-input" required value="90401">
+                    </div>
+                  </div>
+                </fieldset>
+
+                <!-- RECIPIENT -->
+                <fieldset class="b-fieldset">
+                  <legend class="b-legend">02 recipient (to)</legend>
+                  <div class="form-group">
+                    <label class="form-label" for="tname">Recipient Full Name *</label>
+                    <input type="text" id="tname" class="b-input" required value="Walter Gropius">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="tcompany">Company / Institution</label>
+                    <input type="text" id="tcompany" class="b-input" value="Bauhaus Archiv">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="tstreet">Street Address *</label>
+                    <input type="text" id="tstreet" class="b-input" required value="Klingelhöferstraße 14">
+                  </div>
+                  <div style="display: flex; gap: 8px;">
+                    <div class="form-group" style="flex: 2;">
+                      <label class="form-label" for="tcity">City *</label>
+                      <input type="text" id="tcity" class="b-input" required value="New York">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                      <label class="form-label" for="tstate">State *</label>
+                      <input type="text" id="tstate" class="b-input" required maxlength="2" value="NY" style="text-transform: uppercase;">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                      <label class="form-label" for="tzip">ZIP *</label>
+                      <input type="text" id="tzip" class="b-input" required value="10001">
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!-- PARCEL DIMENSIONS -->
+              <fieldset class="b-fieldset">
+                <legend class="b-legend">03 parcel & package metrics</legend>
+                <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                  <button type="button" class="b-btn b-btn-secondary preset-btn" data-w="12" data-l="9" data-wi="6" data-h="2">padded envelope (12 oz)</button>
+                  <button type="button" class="b-btn b-btn-secondary preset-btn" data-w="24" data-l="10" data-wi="7" data-h="4">small box (24 oz)</button>
+                  <button type="button" class="b-btn b-btn-secondary preset-btn" data-w="64" data-l="14" data-wi="10" data-h="6">medium carton (4 lbs)</button>
+                </div>
+                <div style="display: flex; gap: 12px;">
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Weight (oz)</label>
+                    <input type="number" id="pweight" class="b-input" value="24" min="1">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Length (in)</label>
+                    <input type="number" id="plength" class="b-input" value="10" min="1">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Width (in)</label>
+                    <input type="number" id="pwidth" class="b-input" value="7" min="1">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Height (in)</label>
+                    <input type="number" id="pheight" class="b-input" value="4" min="1">
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- CARRIER ROUTING -->
+              <fieldset class="b-fieldset">
+                <legend class="b-legend">04 carrier & routing rate</legend>
+                <div id="rate-container" class="rate-grid">
+                  <!-- Dynamically populated rate boxes -->
+                </div>
+              </fieldset>
+
+              <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 16px;">
+                <button type="button" id="fill-sample-btn" class="b-btn b-btn-secondary">sample data</button>
+                <button type="submit" id="submit-print-btn" class="b-btn" style="background-color: var(--b-blue); font-size: 1.05rem;">
+                  🖨️ purchase & print thermal label
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- TAB 02: TRACKING STATION -->
+          <section id="tab-track" class="tab-content" style="display: none;">
+            <div class="panel-header">
+              <span>package tracking station</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-bottom: 24px;">
+              <input type="text" id="track-search-input" class="b-input" placeholder="Enter USPS 22-digit tracking number..." style="font-family: var(--font-mono); font-size: 1.1rem;">
+              <button id="track-submit-btn" class="b-btn">track</button>
+            </div>
+            <div id="track-results-area" class="b-fieldset" style="min-height: 200px;">
+              <div style="font-weight: 800; font-size: 1.1rem; margin-bottom: 16px;">Tracking Timeline</div>
+              <div id="track-milestones">Search a tracking code above or click "track" on any manifest item.</div>
+            </div>
+          </section>
+
+          <!-- TAB 03: MANIFEST ARCHIVE -->
+          <section id="tab-manifest" class="tab-content" style="display: none;">
+            <div class="panel-header">
+              <span>manifest archive (local indexeddb)</span>
+              <button id="clear-manifest-btn" class="b-btn b-btn-secondary" style="font-size: 0.75rem;">clear archive</button>
+            </div>
+            <table class="b-table">
+              <thead>
+                <tr>
+                  <th>Tracking Number</th>
+                  <th>Carrier</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="manifest-tbody">
+                <tr><td colspan="6" style="text-align: center;">No shipments recorded.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <!-- TAB 04: SETTINGS -->
+          <section id="tab-settings" class="tab-content" style="display: none;">
+            <div class="panel-header">
+              <span>station configuration</span>
+            </div>
+            <div class="b-fieldset" style="max-width: 600px;">
+              <div class="form-group">
+                <label class="form-label">Shippo Live API Key (Optional)</label>
+                <input type="password" id="shippo-key-input" class="b-input" placeholder="shippo_live_...">
+                <div style="font-size: 0.75rem; color: #666; margin-top: 4px;">Leave empty to operate in zero-cost offline station mode.</div>
+              </div>
+              <button id="save-settings-btn" class="b-btn" style="margin-top: 12px;">save settings</button>
+            </div>
+          </section>
+        </main>
+
+        <!-- Right Side: Live Thermal Label Preview (Red Bordered Bauhaus Frame) -->
+        <aside class="preview-panel">
+          <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <span style="font-weight: 900; text-transform: lowercase; font-size: 0.95rem;">live 4×6″ label</span>
+            <span class="pill" style="background-color: var(--b-yellow);">thermal preview</span>
+          </div>
+
+          <!-- THE 4x6 THERMAL LABEL (Printable Target) -->
+          <div id="printable-thermal-label" class="thermal-label-wrap">
+            <div class="l-header">
+              <div class="l-logo">
+                <span id="lbl-carrier" class="l-carrier">USPS</span>
+                <span id="lbl-service" class="l-service-sub">Ground Advantage™</span>
+              </div>
+              <div class="l-indicia">
+                <div id="lbl-indicia" class="l-indicia-box">
+                  US POSTAGE PAID<br>ePostage<br>Velox Station
+                </div>
+              </div>
+            </div>
+
+            <div id="lbl-banner" class="l-banner">USPS GROUND ADVANTAGE™</div>
+
+            <div class="l-addresses">
+              <div class="l-from">
+                <div id="lbl-from-name" style="font-weight: 900;">Bauhaus Station 01</div>
+                <div id="lbl-from-company">Velox Logistics</div>
+                <div id="lbl-from-street">1540 2nd St</div>
+                <div id="lbl-from-city">Santa Monica, CA 90401</div>
+              </div>
+              <div class="l-to">
+                <div style="font-size: 0.65rem; font-weight: normal; margin-bottom: 2px;">SHIP TO:</div>
+                <div id="lbl-to-name" class="l-to-name">Walter Gropius</div>
+                <div id="lbl-to-company">Bauhaus Archiv</div>
+                <div id="lbl-to-street">Klingelhöferstraße 14</div>
+                <div id="lbl-to-city">New York, NY 10001</div>
+              </div>
+            </div>
+
+            <div class="l-barcode-area">
+              <div id="lbl-barcode-container" style="width: 100%; display: flex; justify-content: center;"></div>
+              <div id="lbl-tracking-text" class="l-tracking-digits">USPS TRACKING # 9400 1118 9956 2537 6382 12</div>
+            </div>
+
+            <div class="l-footer">
+              <div class="l-routing">
+                <span style="font-size: 0.6rem; font-weight: 800;">ZIP / POSTAL CODE</span>
+                <span id="lbl-routing-zip" class="l-routing-zip">10001</span>
+              </div>
+              <div class="l-meta">
+                <div><strong>WT:</strong> <span id="lbl-weight">24</span> OZ</div>
+                <div><strong>DATE:</strong> <span id="lbl-date">--</span></div>
+                <div><strong>STATION:</strong> VELOX-01</div>
+              </div>
+            </div>
+          </div>
+
+          <button id="direct-print-btn" class="b-btn" style="width: 4in; margin-top: 16px; background-color: var(--b-red);">
+            🖨️ print 4×6″ label
+          </button>
+        </aside>
       </div>
-
-      <!-- Quick Stats Card -->
-      <div class="card" style="display: flex; flex-direction: column; justify-content: center; gap: var(--space-3);">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ACTIVE SHIPMENTS</span>
-          <span class="badge badge-success">Local-First</span>
-        </div>
-        <div id="stat-total-count" style="font-size: 2.25rem; font-weight: 800; color: var(--color-primary);">1</div>
-        <div style="font-size: 0.85rem; color: var(--text-muted);">
-          Stored directly in your browser's IndexedDB. Zero external tracking.
-        </div>
-      </div>
-    </section>
-
-    <!-- Recent Shipments Table -->
-    <section class="card">
-      <div class="card-title">
-        <span>Recent Shipments</span>
-        <a href="ship.html" class="btn btn-secondary btn-sm">+ New Label</a>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table" aria-label="Recent shipments table">
-          <thead>
-            <tr>
-              <th>Tracking Number</th>
-              <th>Carrier & Service</th>
-              <th>Recipient</th>
-              <th>Cost</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th style="text-align: right;">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="shipments-tbody">
-            <!-- Dynamic rows populated via JS -->
-            <tr>
-              <td colspan="7" style="text-align: center; color: var(--text-muted); padding: var(--space-6);">
-                Loading saved shipments from IndexedDB...
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <!-- Settings Dialog (Native HTML5 <dialog>) -->
-  <dialog id="settings-dialog" class="native-modal">
-    <h3 style="margin-bottom: var(--space-3);">Velox Settings</h3>
-    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: var(--space-4);">
-      Velox operates completely offline in <strong>Demo Mode</strong> by default. You can optionally connect your Shippo API key for live carrier rates.
-    </p>
-
-    <div class="form-group">
-      <label class="form-label" for="shippo-api-key-input">Shippo API Token (Optional)</label>
-      <input type="password" id="shippo-api-key-input" class="form-control" placeholder="shippo_test_...">
-      <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: block;">
-        Stored only in your local browser IndexedDB. Never transmitted to third parties.
-      </small>
     </div>
+  </div>
 
-    <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6);">
-      <button id="close-settings-btn" class="btn btn-secondary">Close</button>
-      <button id="save-settings-btn" class="btn btn-primary">Save Settings</button>
-    </div>
-  </dialog>
-
-  <!-- Footer -->
-  <footer class="app-footer">
-    <div class="footer-container">
-      <div>
-        <strong>Velox</strong> — Rebuilt with pure HTML5, CSS & Web Components. Inspired by Shippo.
-      </div>
-      <div>
-        Zero Frameworks • Zero Dependencies • Local-First
-      </div>
-    </div>
-  </footer>
-
-  <!-- Scripts (ES Modules) -->
+  <!-- CONSOLIDATED JAVASCRIPT MODULE (Zero External Dependencies) -->
   <script type="module">
-    import { initAppShell } from "./js/app.js";
-    import { db } from "./js/db.js";
-    import { fetchCurrentWeather } from "./js/weather.js";
+    /* ==========================================================================
+       1. STANDARDS-COMPLIANT CODE 128 VECTOR BARCODE GENERATOR
+       ========================================================================== */
+    const CODE128_PATTERNS = [
+      "212222", "222122", "222221", "121223", "121322", "131222", "122213", "122312", "132212", "221213",
+      "221312", "231212", "112232", "122132", "122231", "113222", "123122", "123221", "223211", "221132",
+      "221231", "213212", "223112", "312131", "311222", "321122", "321221", "312212", "322112", "322211",
+      "212123", "212321", "232121", "111323", "131123", "131321", "112313", "132113", "132311", "211313",
+      "231113", "231311", "112133", "112331", "132131", "113123", "113321", "133121", "313121", "211331",
+      "231131", "213113", "213311", "213131", "311123", "311321", "331121", "312113", "312311", "332111",
+      "314111", "221411", "431111", "111224", "111422", "121124", "121421", "141122", "141221", "112214",
+      "112412", "122114", "122411", "142112", "142211", "241211", "221114", "413111", "241112", "134111",
+      "111242", "121142", "121241", "114212", "124112", "124211", "411212", "421112", "421211", "212141",
+      "214121", "412121", "111143", "111341", "131141", "114113", "114311", "411113", "411311", "113141",
+      "114131", "311141", "411131", "211412", "211214", "211232", "2331112"
+    ];
+    const START_B = 104, START_C = 105, STOP = 106;
 
-    document.addEventListener("DOMContentLoaded", async () => {
-      await initAppShell();
-      loadWeather();
-      loadShipmentsTable();
-    });
+    function generateBarcodeSVG(text, options = {}) {
+      const clean = String(text || "").replace(/\s+/g, "").toUpperCase();
+      if (!clean) return "";
+      const barHeight = options.height || 75;
+      const moduleWidth = options.moduleWidth || 2.1;
+      const quietZone = 16;
+      const isDigits = /^\d+$/.test(clean) && clean.length % 2 === 0;
 
-    async function loadWeather() {
-      const weather = await fetchCurrentWeather();
-      document.getElementById("weather-city").textContent = weather.city;
-      document.getElementById("weather-condition").textContent = `${weather.condition} • Humidity: ${weather.humidity}%`;
-      document.getElementById("weather-temp").textContent = `${weather.temp}°F`;
-      document.getElementById("weather-humidity").textContent = `Precipitation: ${weather.precipitation}"`;
-      document.getElementById("weather-icon").textContent = weather.icon;
+      let symbols = [isDigits ? START_C : START_B];
+      let checksum = symbols[0];
+      let weight = 1;
+
+      if (isDigits) {
+        for (let i = 0; i < clean.length; i += 2) {
+          const val = parseInt(clean.substr(i, 2), 10);
+          symbols.push(val);
+          checksum += val * weight++;
+        }
+      } else {
+        for (let i = 0; i < clean.length; i++) {
+          const code = clean.charCodeAt(i) - 32;
+          const val = code >= 0 && code <= 95 ? code : 0;
+          symbols.push(val);
+          checksum += val * weight++;
+        }
+      }
+
+      symbols.push(checksum % 103);
+      symbols.push(STOP);
+
+      let binary = "";
+      for (const sym of symbols) {
+        const pat = CODE128_PATTERNS[sym];
+        let isBar = true;
+        for (let i = 0; i < pat.length; i++) {
+          binary += (isBar ? "1" : "0").repeat(parseInt(pat[i], 10));
+          isBar = !isBar;
+        }
+      }
+
+      let rects = [];
+      let x = quietZone;
+      for (let i = 0; i < binary.length; i++) {
+        if (binary[i] === "1") {
+          let run = 1;
+          while (i + 1 < binary.length && binary[i + 1] === "1") { run++; i++; }
+          rects.push(`<rect x="${x}" y="0" width="${run * moduleWidth}" height="${barHeight}" fill="#000000" />`);
+          x += run * moduleWidth;
+        } else {
+          x += moduleWidth;
+        }
+      }
+
+      const totalWidth = binary.length * moduleWidth + quietZone * 2;
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} ${barHeight}" preserveAspectRatio="xMidYMid meet" class="l-barcode-svg">
+        <rect width="100%" height="100%" fill="#ffffff"/>
+        ${rects.join("")}
+      </svg>`;
     }
 
-    async function loadShipmentsTable() {
-      const shipments = await db.getAllShipments();
-      const tbody = document.getElementById("shipments-tbody");
-      document.getElementById("stat-total-count").textContent = shipments.length;
+    /* ==========================================================================
+       2. LIGHTWEIGHT LOCAL-FIRST INDEXEDDB REPOSITORY
+       ========================================================================== */
+    const DB_NAME = "velox_bauhaus_db";
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains("shipments")) {
+            const store = db.createObjectStore("shipments", { keyPath: "id" });
+            store.createIndex("trackingNumber", "trackingNumber", { unique: false });
+          }
+          if (!db.objectStoreNames.contains("settings")) {
+            db.createObjectStore("settings", { keyPath: "key" });
+          }
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
 
-      if (shipments.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: var(--space-8);">
-              No shipments found. <a href="ship.html">Create your first shipment label</a>.
-            </td>
-          </tr>
-        `;
+    async function dbSaveShipment(item) {
+      const db = await openDB();
+      return new Promise((res, rej) => {
+        const tx = db.transaction("shipments", "readwrite");
+        tx.objectStore("shipments").put(item);
+        tx.oncomplete = () => res(item);
+        tx.onerror = () => rej(tx.error);
+      });
+    }
+
+    async function dbGetShipments() {
+      const db = await openDB();
+      return new Promise((res, rej) => {
+        const tx = db.transaction("shipments", "readonly");
+        const req = tx.objectStore("shipments").getAll();
+        req.onsuccess = () => res(req.result || []);
+        req.onerror = () => rej(req.error);
+      });
+    }
+
+    async function dbClearShipments() {
+      const db = await openDB();
+      return new Promise((res, rej) => {
+        const tx = db.transaction("shipments", "readwrite");
+        tx.objectStore("shipments").clear();
+        tx.oncomplete = () => res(true);
+        tx.onerror = () => rej(tx.error);
+      });
+    }
+
+    /* ==========================================================================
+       3. CARRIER RATES & REALISTIC DEMO ENGINE
+       ========================================================================== */
+    function calculateRates(weightOz) {
+      const lbs = (parseFloat(weightOz) || 24) / 16;
+      const factor = Math.max(1, Math.min(6, lbs));
+      return [
+        {
+          id: "r_ground",
+          carrier: "USPS",
+          service: "USPS Ground Advantage™",
+          title: "usps ground advantage™",
+          desc: "2-5 business days • commercial ePostage",
+          amount: (4.75 + factor * 1.65).toFixed(2),
+          banner: "USPS GROUND ADVANTAGE™",
+          indicia: "US POSTAGE PAID<br>ePostage<br>Velox Station"
+        },
+        {
+          id: "r_priority",
+          carrier: "USPS",
+          service: "Priority Mail 2-Day®",
+          title: "usps priority mail 2-day®",
+          desc: "1-3 business days • fast delivery",
+          amount: (8.40 + factor * 2.20).toFixed(2),
+          banner: "PRIORITY MAIL 2-DAY®",
+          indicia: "US POSTAGE PAID<br>ePostage<br>Velox Station"
+        },
+        {
+          id: "r_internal",
+          carrier: "INTERNAL",
+          service: "Internal Dispatch Station",
+          title: "internal point of shipping",
+          desc: "facility & tote intake • no postage required",
+          amount: "0.00",
+          banner: "INTERNAL POINT OF SHIPPING / DISPATCH",
+          indicia: "INTERNAL DISPATCH<br>NO POSTAGE REQ<br>STATION VERIFIED"
+        }
+      ];
+    }
+
+    function generateTrackingNumber() {
+      let num = "9400";
+      for (let i = 0; i < 18; i++) num += Math.floor(Math.random() * 10);
+      return num;
+    }
+
+    /* ==========================================================================
+       4. OPEN-METEO WEATHER FETCH (NO API KEY)
+       ========================================================================== */
+    async function loadWeather() {
+      try {
+        const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=34.0195&longitude=-118.4912&current=temperature_2m,relative_humidity_2m,weather_code&temperature_unit=fahrenheit");
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById("weather-temp").textContent = `${Math.round(data.current.temperature_2m)}°F`;
+          document.getElementById("weather-summary").textContent = `Clear Dispatch Conditions • Humidity: ${data.current.relative_humidity_2m}%`;
+        }
+      } catch (_) {
+        document.getElementById("weather-temp").textContent = "72°F";
+        document.getElementById("weather-summary").textContent = "Local Station Operating Cleanly";
+      }
+    }
+
+    /* ==========================================================================
+       5. APPLICATION STATE & DOM WIRING
+       ========================================================================== */
+    let currentRates = [];
+    let selectedRate = null;
+    let currentTracking = generateTrackingNumber();
+
+    function init() {
+      loadWeather();
+      setupTabs();
+      setupPresets();
+      setupFormListeners();
+      refreshRates();
+      refreshManifest();
+      updatePwaStatus();
+
+      // Register Service Worker
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      }
+    }
+
+    function setupTabs() {
+      const tabs = ["tab-ship", "tab-track", "tab-manifest", "tab-settings"];
+      document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const target = btn.dataset.tab;
+          tabs.forEach(t => {
+            const el = document.getElementById(t);
+            if (el) el.style.display = (t === target ? "block" : "none");
+          });
+          if (target === "tab-manifest") refreshManifest();
+        });
+      });
+    }
+
+    function setupPresets() {
+      document.querySelectorAll(".preset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("pweight").value = btn.dataset.w;
+          document.getElementById("plength").value = btn.dataset.l;
+          document.getElementById("pwidth").value = btn.dataset.wi;
+          document.getElementById("pheight").value = btn.dataset.h;
+          refreshRates();
+          renderPreview();
+        });
+      });
+
+      document.getElementById("fill-sample-btn").addEventListener("click", () => {
+        document.getElementById("fname").value = "Bauhaus Station 01";
+        document.getElementById("fcompany").value = "Velox Logistics";
+        document.getElementById("fstreet").value = "1540 2nd St";
+        document.getElementById("fcity").value = "Santa Monica";
+        document.getElementById("fstate").value = "CA";
+        document.getElementById("fzip").value = "90401";
+
+        document.getElementById("tname").value = "László Moholy-Nagy";
+        document.getElementById("tcompany").value = "Design Institute";
+        document.getElementById("tstreet").value = "3300 S Federal St";
+        document.getElementById("tcity").value = "Chicago";
+        document.getElementById("tstate").value = "IL";
+        document.getElementById("tzip").value = "60616";
+        refreshRates();
+        renderPreview();
+      });
+    }
+
+    function setupFormListeners() {
+      document.getElementById("velox-form").addEventListener("input", renderPreview);
+      document.getElementById("pweight").addEventListener("change", refreshRates);
+
+      document.getElementById("velox-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await purchaseAndPrint();
+      });
+
+      document.getElementById("direct-print-btn").addEventListener("click", () => {
+        window.print();
+      });
+
+      document.getElementById("clear-manifest-btn").addEventListener("click", async () => {
+        if (confirm("Clear local manifest archive?")) {
+          await dbClearShipments();
+          refreshManifest();
+        }
+      });
+
+      document.getElementById("track-submit-btn").addEventListener("click", () => {
+        const val = document.getElementById("track-search-input").value.trim();
+        runTracking(val);
+      });
+    }
+
+    function refreshRates() {
+      const weight = document.getElementById("pweight").value;
+      currentRates = calculateRates(weight);
+      if (!selectedRate) selectedRate = currentRates[0];
+
+      const container = document.getElementById("rate-container");
+      container.innerHTML = currentRates.map(r => `
+        <div class="rate-box ${selectedRate?.id === r.id ? "active" : ""}" data-id="${r.id}">
+          <div>
+            <div class="rate-title">${r.title}</div>
+            <div class="rate-desc">${r.desc}</div>
+          </div>
+          <div class="rate-price">$${r.amount}</div>
+        </div>
+      `).join("");
+
+      container.querySelectorAll(".rate-box").forEach(el => {
+        el.addEventListener("click", () => {
+          selectedRate = currentRates.find(r => r.id === el.dataset.id);
+          refreshRates();
+          renderPreview();
+        });
+      });
+    }
+
+    function renderPreview() {
+      const fname = document.getElementById("fname").value || "Shipper";
+      const fcomp = document.getElementById("fcompany").value || "";
+      const fstreet = document.getElementById("fstreet").value || "";
+      const fcity = document.getElementById("fcity").value || "";
+      const fstate = (document.getElementById("fstate").value || "").toUpperCase();
+      const fzip = document.getElementById("fzip").value || "";
+
+      const tname = document.getElementById("tname").value || "Recipient";
+      const tcomp = document.getElementById("tcompany").value || "";
+      const tstreet = document.getElementById("tstreet").value || "";
+      const tcity = document.getElementById("tcity").value || "";
+      const tstate = (document.getElementById("tstate").value || "").toUpperCase();
+      const tzip = document.getElementById("tzip").value || "";
+      const weight = document.getElementById("pweight").value || "24";
+
+      const rate = selectedRate || currentRates[0] || {};
+
+      document.getElementById("lbl-carrier").textContent = rate.carrier || "USPS";
+      document.getElementById("lbl-service").textContent = rate.service || "Ground Advantage™";
+      document.getElementById("lbl-indicia").innerHTML = rate.indicia || "US POSTAGE PAID<br>ePostage<br>Velox Station";
+      document.getElementById("lbl-banner").textContent = rate.banner || "USPS GROUND ADVANTAGE™";
+
+      document.getElementById("lbl-from-name").textContent = fname;
+      document.getElementById("lbl-from-company").textContent = fcomp;
+      document.getElementById("lbl-from-street").textContent = fstreet;
+      document.getElementById("lbl-from-city").textContent = `${fcity}, ${fstate} ${fzip}`;
+
+      document.getElementById("lbl-to-name").textContent = tname;
+      document.getElementById("lbl-to-company").textContent = tcomp;
+      document.getElementById("lbl-to-street").textContent = tstreet;
+      document.getElementById("lbl-to-city").textContent = `${tcity}, ${tstate} ${tzip}`;
+
+      document.getElementById("lbl-routing-zip").textContent = tzip || "10001";
+      document.getElementById("lbl-weight").textContent = weight;
+      document.getElementById("lbl-date").textContent = new Date().toLocaleDateString();
+
+      // Render crisp SVG barcode
+      const formatted = currentTracking.match(/.{1,4}/g)?.join(" ") || currentTracking;
+      document.getElementById("lbl-tracking-text").textContent = `USPS TRACKING # ${formatted}`;
+      document.getElementById("lbl-barcode-container").innerHTML = generateBarcodeSVG(currentTracking, { height: 75, moduleWidth: 2.1 });
+    }
+
+    async function purchaseAndPrint() {
+      const shipment = {
+        id: `velox_${Date.now()}`,
+        trackingNumber: currentTracking,
+        carrier: selectedRate.carrier,
+        service: selectedRate.service,
+        amount: selectedRate.amount,
+        createdAt: new Date().toISOString(),
+        to: document.getElementById("tname").value,
+        dest: `${document.getElementById("tcity").value}, ${document.getElementById("tstate").value}`
+      };
+
+      await dbSaveShipment(shipment);
+      window.print();
+
+      // Generate fresh tracking number for next parcel
+      currentTracking = generateTrackingNumber();
+      renderPreview();
+      refreshManifest();
+    }
+
+    async function refreshManifest() {
+      const items = await dbGetShipments();
+      const tbody = document.getElementById("manifest-tbody");
+      document.getElementById("shipment-counter-text").textContent = `${items.length} label(s) archived`;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 20px;">No shipments recorded.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = shipments.map(s => `
+      tbody.innerHTML = items.reverse().map(item => `
         <tr>
+          <td style="font-family: var(--font-mono); font-weight: 700;">${item.trackingNumber}</td>
+          <td><strong>${item.carrier}</strong> — ${item.service}</td>
+          <td><strong>${item.to}</strong> (${item.dest})</td>
+          <td style="font-weight: 900;">$${item.amount}</td>
+          <td>${new Date(item.createdAt).toLocaleDateString()}</td>
           <td>
-            <a href="track.html?number=${s.trackingNumber}" style="font-family: var(--font-mono); font-weight: 700;">
-              ${s.trackingNumber}
-            </a>
-          </td>
-          <td>
-            <strong>${s.carrier}</strong>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">${s.service}</div>
-          </td>
-          <td>
-            <strong>${s.toAddress?.name || "Recipient"}</strong>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">${s.toAddress?.city}, ${s.toAddress?.state}</div>
-          </td>
-          <td style="font-weight: 700;">$${s.amount}</td>
-          <td>${new Date(s.createdAt).toLocaleDateString()}</td>
-          <td>
-            <span class="badge badge-success">${s.status || "Created"}</span>
-          </td>
-          <td style="text-align: right; white-space: nowrap;">
-            <a href="print.html?id=${s.id}" target="_blank" class="btn btn-secondary btn-sm" title="Print 4x6 Label">
-              🖨️ Print
-            </a>
-            <a href="track.html?number=${s.trackingNumber}" class="btn btn-secondary btn-sm">
-              📍 Track
-            </a>
+            <button class="b-btn b-btn-secondary manifest-track-btn" data-track="${item.trackingNumber}" style="padding: 4px 8px; font-size: 0.75rem;">track</button>
           </td>
         </tr>
       `).join("");
+
+      tbody.querySelectorAll(".manifest-track-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("tab-btn-track").click();
+          document.getElementById("track-search-input").value = btn.dataset.track;
+          runTracking(btn.dataset.track);
+        });
+      });
     }
+
+    function runTracking(trackingNum) {
+      const clean = (trackingNum || "").replace(/\s+/g, "");
+      const container = document.getElementById("track-milestones");
+      container.innerHTML = `
+        <div style="font-family: var(--font-mono); font-weight: 900; margin-bottom: 8px;">TRACKING: ${clean || currentTracking}</div>
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+          <div style="border-left: 4px solid var(--b-blue); padding-left: 12px;">
+            <div style="font-weight: 900;">In Transit — Out for Delivery</div>
+            <div style="font-size: 0.8rem; color: #555;">Local Carrier Hub • ${new Date().toLocaleTimeString()}</div>
+          </div>
+          <div style="border-left: 4px solid var(--b-yellow); padding-left: 12px;">
+            <div style="font-weight: 800;">Processed through Regional Sort Facility</div>
+            <div style="font-size: 0.8rem; color: #555;">Transit Sorting Center • Yesterday</div>
+          </div>
+          <div style="border-left: 4px solid var(--b-black); padding-left: 12px;">
+            <div style="font-weight: 700;">Shipping Label Created / Station Intake Verified</div>
+            <div style="font-size: 0.8rem; color: #555;">Velox Internal Station • Two days ago</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updatePwaStatus() {
+      const badge = document.getElementById("pwa-status-badge");
+      const isOnline = navigator.onLine;
+      if (badge) {
+        badge.textContent = isOnline ? "⚡ offline ready" : "🟠 offline mode";
+      }
+      window.addEventListener("online", () => { badge.textContent = "⚡ offline ready"; });
+      window.addEventListener("offline", () => { badge.textContent = "🟠 offline mode"; });
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
   </script>
 </body>
 </html>
-
