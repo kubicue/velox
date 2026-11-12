@@ -21,9 +21,23 @@ const CODE128_PATTERNS = [
 ];
 const START_B = 104, START_C = 105, STOP = 106;
 
+/**
+ * HTML Entity Encoder to prevent DOM-based XSS
+ */
+function escapeHTML(str) {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export function generateBarcodeSVG(text, options = {}) {
+  // Strip whitespace and sanitize tracking input for barcode encoding
   const clean = String(text || "").replace(/\s+/g, "").toUpperCase();
   if (!clean) return "";
+  const safeClean = clean.replace(/[^A-Z0-9_-]/g, "");
   const barHeight = options.height || 75;
   const moduleWidth = options.moduleWidth || 2.1;
   const quietZone = 16;
@@ -75,7 +89,7 @@ export function generateBarcodeSVG(text, options = {}) {
   }
 
   const totalWidth = binary.length * moduleWidth + quietZone * 2;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} ${barHeight}" preserveAspectRatio="xMidYMid meet" class="lh-barcode-svg" role="img" aria-label="Scannable Code 128 barcode for ${clean}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalWidth} ${barHeight}" preserveAspectRatio="xMidYMid meet" class="lh-barcode-svg" role="img" aria-label="Scannable Code 128 barcode for ${safeClean}">
     <rect width="100%" height="100%" fill="#ffffff"/>
     ${rects.join("")}
   </svg>`;
@@ -491,13 +505,13 @@ async function refreshManifest() {
 
   tbody.innerHTML = items.reverse().map(item => `
     <tr>
-      <td style="font-family: var(--font-mono); font-weight: 700;">${item.trackingNumber}</td>
-      <td><strong>${item.carrier}</strong> — ${item.service}</td>
-      <td><strong>${item.to}</strong> (${item.dest})</td>
-      <td style="font-weight: 800;">$${item.amount}</td>
-      <td>${new Date(item.createdAt).toLocaleDateString()}</td>
+      <td style="font-family: var(--font-mono); font-weight: 700;">${escapeHTML(item.trackingNumber)}</td>
+      <td><strong>${escapeHTML(item.carrier)}</strong> — ${escapeHTML(item.service)}</td>
+      <td><strong>${escapeHTML(item.to)}</strong> (${escapeHTML(item.dest)})</td>
+      <td style="font-weight: 800;">$${escapeHTML(item.amount)}</td>
+      <td>${escapeHTML(new Date(item.createdAt).toLocaleDateString())}</td>
       <td>
-        <button class="btn btn-secondary manifest-track-btn" data-track="${item.trackingNumber}" style="padding: 4px 10px; font-size: 0.775rem;">Track</button>
+        <button class="btn btn-secondary manifest-track-btn" data-track="${escapeHTML(item.trackingNumber)}" style="padding: 4px 10px; font-size: 0.775rem;">Track</button>
       </td>
     </tr>
   `).join("");
@@ -512,18 +526,20 @@ async function refreshManifest() {
 }
 
 function runTracking(trackingNum) {
-  const clean = (trackingNum || "").replace(/\s+/g, "");
+  const clean = (trackingNum || "").replace(/\s+/g, "").replace(/[^A-Za-z0-9_-]/g, "");
   const container = document.getElementById("track-milestones");
   if (!container) return;
 
+  const displayTracking = clean || currentTracking;
+
   container.innerHTML = `
     <div style="font-family: var(--font-mono); font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; color: var(--c-charcoal);">
-      Tracking: ${clean || currentTracking}
+      Tracking: ${escapeHTML(displayTracking)}
     </div>
     <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 14px;">
       <div style="border-left: 3px solid var(--c-blue); padding-left: 14px;">
         <div style="font-weight: 700; color: var(--c-charcoal);">In Transit — Out for Delivery</div>
-        <div style="font-size: 0.8rem; color: var(--c-muted);">Local Carrier Station • ${new Date().toLocaleTimeString()}</div>
+        <div style="font-size: 0.8rem; color: var(--c-muted);">Local Carrier Station • ${escapeHTML(new Date().toLocaleTimeString())}</div>
       </div>
       <div style="border-left: 3px solid var(--c-yellow-accent); padding-left: 14px;">
         <div style="font-weight: 700; color: var(--c-charcoal);">Processed through Regional Sorting Facility</div>
@@ -551,3 +567,4 @@ function updatePwaStatus() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+

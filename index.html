@@ -11,6 +11,8 @@
   <meta name="theme-color" content="#1e3a8a">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self' https://api.open-meteo.com https://api.goshippo.com; img-src 'self' data:; font-src 'self';">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -252,7 +254,7 @@
           <h3 class="card-title">Station Configuration</h3>
           <div class="form-group">
             <label class="form-label" for="shippo-key-input">Shippo Live API Token (Optional)</label>
-            <input type="password" id="shippo-key-input" class="form-input" placeholder="shippo_live_...">
+            <input type="password" id="shippo-key-input" class="form-input" placeholder="shippo_live_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <small style="color: var(--c-muted); font-size: 0.775rem; display: block; margin-top: 4px;">
               When left blank, Velox operates in zero-cost offline station mode with realistic simulated rates.
             </small>

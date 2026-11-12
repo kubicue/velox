@@ -28,20 +28,39 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return (
-        cached ||
-        fetch(event.request)
-          .then((res) => {
-            if (res && res.status === 200 && event.request.method === "GET") {
-              const clone = res.clone();
-              caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
-            }
-            return res;
-          })
-          .catch(() => cached)
-      );
-    })
-  );
+  // Only handle GET requests with http/https schemes
+  if (event.request.method !== "GET" || !event.request.url.startsWith("http")) {
+    return;
+  }
+
+  const url = new URL(event.request.url);
+
+  // Origin check: Only cache and revalidate first-party application assets
+  if (url.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        return (
+          cached ||
+          fetch(event.request)
+            .then((res) => {
+              if (res && res.status === 200 && res.type === "basic") {
+                const clone = res.clone();
+                caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
+              }
+              return res;
+            })
+            .catch(() => cached)
+        );
+      })
+    );
+  } else {
+    // External APIs (e.g. weather): pass through to network without polluting app cache
+    event.respondWith(
+      fetch(event.request).catch(() => {
+        return new Response(JSON.stringify({ offline: true, error: "Network unavailable" }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      })
+    );
+  }
 });
