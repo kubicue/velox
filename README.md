@@ -25,7 +25,7 @@ velox/
 
 ---
 
-## 🎨 Design & Accessibility (WCAG 2.1 AA / AAA)
+## ⚡ Design & Accessibility (WCAG 2.1 AA / AAA)
 
 - **Subtle Bauhaus Palette**: Deep Slate (`#0f172a`), Cobalt Blue (`#1e40af`), Warm Amber (`#d97706`), and Crimson (`#dc2626`) woven into understated gradients and clean borders.
 - **Accessible Micro-Interactions**: Smooth hover transitions (`cubic-bezier(0.16, 1, 0.3, 1)`), subtle card elevation, and interactive rate cards.
@@ -34,20 +34,20 @@ velox/
 
 ---
 
-## ✨ Core Capabilities
+## ⚡ Core Capabilities
 
-- 🏷️ **4×6″ Thermal Label Engine**: Precision `@page { size: 4in 6in; margin: 0; }` styling prints only the thermal label directly from the browser to any 4×6″ roll printer (Rollo, Zebra, Brother, MUNBYN).
-- 📊 **Pure Vector Code-128 Barcodes**: Built-in SVG barcode generator with zero external libraries.
-- 🏢 **Internal Point of Shipping**: Dedicated zero-cost dispatch and tote-routing label mode for warehouses, mailrooms, and inventory stations.
-- 📥 **CSV Transaction Export**: Export shipping manifest archives to standard RFC 4180 CSV for accounting, spreadsheet reconciliation, or warehouse handoffs with zero external tools.
-- 🧹 **Local Storage Hygiene**: Complete purge controls to drop historical records and prevent unbounded IndexedDB growth on local warehouse stations.
-- 🔒 **Local-First (IndexedDB)**: Manifest history and recipient addresses are persisted directly in the browser.
+- ⚡ **4×6″ Thermal Label Engine**: Precision `@page { size: 4in 6in; margin: 0; }` styling prints only the thermal label directly from the browser to any 4×6″ roll printer (Rollo, Zebra, Brother, MUNBYN).
+- ⚡ **Pure Vector Code-128 Barcodes**: Built-in SVG barcode generator with zero external libraries.
+- ⚡ **Internal Point of Shipping**: Dedicated zero-cost dispatch and tote-routing label mode for warehouses, mailrooms, and inventory stations.
+- ⚡**CSV Transaction Export**: Export shipping manifest archives to standard RFC 4180 CSV for accounting, spreadsheet reconciliation, or warehouse handoffs with zero external tools.
+- ⚡ **Local Storage Hygiene**: Complete purge controls to drop historical records and prevent unbounded IndexedDB growth on local warehouse stations.
+- ⚡ **Local-First (IndexedDB)**: Manifest history and recipient addresses are persisted directly in the browser.
 - ⚡ **Offline PWA**: Full Service Worker caching keeps Velox operational in Wi-Fi dead zones.
-- 🌤️ **Live Dispatch Weather**: Built-in Open-Meteo API integration with zero API keys required.
+- ⚡ **Live Dispatch Weather**: Built-in Open-Meteo API integration with zero API keys required.
 
 ---
 
-## 🚀 Running Locally
+## ⚡ Running Locally
 
 ```bash
 # Start a simple static server
@@ -58,6 +58,6 @@ Open `http://localhost:8080` in any browser or install it as a standalone deskto
 
 ---
 
-## 📜 License
+## ⚡ License
 
 MIT License.
