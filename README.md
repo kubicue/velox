@@ -8,6 +8,8 @@ Inspired by [Shippo](https://goshippo.com) and rewritten from the original 2015 
 
 ## ✨ Features
 
+- ⚡ **Offline-First PWA (Service Worker + Manifest)**: Installable as a standalone desktop app on macOS, Windows, Linux, and mobile. Operates 100% offline with zero network latency, ideal for warehouse packing benches and steel/concrete dead zones.
+- 🏢 **Internal Point of Shipping**: Dedicated internal warehouse dispatch & tote-routing mode for generating internal bin/carton scannable barcodes with zero postage fees.
 - 🏷️ **Precision 4×6″ Thermal Shipping Labels**: Formatted to industry-standard 4″ × 6″ thermal dimensions via CSS `@page` media queries and SVG graphics. Ready for thermal roll printers (Rollo, Zebra, Brother, MUNBYN) or standard letter paper.
 - 📊 **Pure JavaScript Code-128 Barcode Engine**: Zero-dependency, standards-compliant Code-128 Set C & Set B SVG barcode generator. No external canvas or raster image libraries.
 - 📦 **Carrier Rate Shopping**: Live rate comparison across USPS Ground Advantage™, Priority Mail®, Priority Mail Express®, and UPS® Ground.
@@ -106,3 +108,4 @@ velox/
 ## 📜 License
 
 MIT License. Inspired by Shippo and built for the modern open web.
+

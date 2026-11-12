@@ -5,10 +5,16 @@
 
 import { db } from "./db.js";
 
-// Initialize Theme & Settings
+// Initialize Theme, Settings & Offline PWA Capabilities
 export async function initAppShell() {
   const savedTheme = await db.getSetting("theme", "auto");
   applyTheme(savedTheme);
+
+  // Setup Service Worker for Offline PWA
+  registerServiceWorker();
+
+  // Monitor network status
+  setupNetworkMonitor();
 
   // Setup theme toggle button if present
   const themeBtn = document.getElementById("theme-toggle-btn");
@@ -103,3 +109,47 @@ async function seedInitialDataIfEmpty() {
     await db.saveShipment(demoShipment);
   }
 }
+
+/**
+ * Register Service Worker for offline PWA operation
+ */
+function registerServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js", { scope: "./" })
+        .then((registration) => {
+          console.log("Velox PWA Service Worker active. Scope:", registration.scope);
+        })
+        .catch((error) => {
+          console.warn("Velox Service Worker registration failed:", error);
+        });
+    });
+  }
+}
+
+/**
+ * Live Network Connection Monitor for warehouse/offline usage
+ */
+function setupNetworkMonitor() {
+  const updateStatus = () => {
+    const isOnline = navigator.onLine;
+    const badge = document.getElementById("connection-status-badge");
+    if (badge) {
+      if (isOnline) {
+        badge.textContent = "⚡ Offline Ready";
+        badge.className = "badge badge-success";
+        badge.title = "App is cached locally. Operating with zero network latency.";
+      } else {
+        badge.textContent = "🟠 Offline Mode";
+        badge.className = "badge badge-warning";
+        badge.title = "Operating disconnected. All shipments saved to local IndexedDB.";
+      }
+    }
+  };
+
+  window.addEventListener("online", updateStatus);
+  window.addEventListener("offline", updateStatus);
+  updateStatus();
+}
+
+

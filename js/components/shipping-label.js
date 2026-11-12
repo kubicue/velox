@@ -60,8 +60,18 @@ export class ShippingLabelElement extends HTMLElement {
     const trackingClean = (s.trackingNumber || "").replace(/\s+/g, "");
     const formattedTracking = trackingClean.match(/.{1,4}/g)?.join(" ") || trackingClean;
     const barcodeSvg = generateBarcodeSVG(trackingClean, { height: 75, moduleWidth: 2.2 });
+    const isInternal = (s.carrier || "").toLowerCase().includes("internal") || (s.service || "").toLowerCase().includes("internal");
     const isPriority = (s.service || "").toLowerCase().includes("priority");
-    const bannerTitle = isPriority ? "PRIORITY MAIL 2-DAY®" : "USPS GROUND ADVANTAGE™";
+    const bannerTitle = isInternal ? "INTERNAL POINT OF SHIPPING / DISPATCH" : isPriority ? "PRIORITY MAIL 2-DAY®" : "USPS GROUND ADVANTAGE™";
+    const indiciaContent = isInternal ? `
+      INTERNAL STAGING<br>
+      NO POSTAGE REQ<br>
+      STATION VERIFIED
+    ` : `
+      US POSTAGE PAID<br>
+      ePostage<br>
+      Velox Ship
+    `;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -238,9 +248,7 @@ export class ShippingLabelElement extends HTMLElement {
           </div>
           <div class="postage-indicia">
             <div class="indicia-box">
-              US POSTAGE PAID<br>
-              ePostage<br>
-              Velox Ship
+              ${indiciaContent}
             </div>
           </div>
         </div>
@@ -290,3 +298,4 @@ export class ShippingLabelElement extends HTMLElement {
 if (!customElements.get("shipping-label")) {
   customElements.define("shipping-label", ShippingLabelElement);
 }
+

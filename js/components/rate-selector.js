@@ -114,6 +114,11 @@ export class RateSelectorElement extends HTMLElement {
           color: #ffb500;
         }
 
+        .rate-carrier-icon.internal {
+          background-color: #047857;
+          color: #ffffff;
+        }
+
         .rate-title {
           font-weight: 700;
           font-size: 0.95rem;
@@ -151,11 +156,14 @@ export class RateSelectorElement extends HTMLElement {
         ${this._rates.map(rate => {
           const isSelected = rate.id === this._selectedRateId;
           const isUps = (rate.carrier || "").toLowerCase().includes("ups");
+          const isInternal = (rate.carrier || "").toLowerCase().includes("internal");
+          const carrierIconText = isInternal ? "STN" : isUps ? "UPS" : "USPS";
+          const iconClass = isInternal ? "internal" : isUps ? "ups" : "";
           return `
             <div class="rate-card ${isSelected ? "selected" : ""}" data-id="${rate.id}">
               <div class="rate-info">
-                <div class="rate-carrier-icon ${isUps ? "ups" : ""}">
-                  ${isUps ? "UPS" : "USPS"}
+                <div class="rate-carrier-icon ${iconClass}">
+                  ${carrierIconText}
                 </div>
                 <div>
                   <div class="rate-title">${rate.service}</div>
@@ -183,3 +191,4 @@ export class RateSelectorElement extends HTMLElement {
 if (!customElements.get("rate-selector")) {
   customElements.define("rate-selector", RateSelectorElement);
 }
+

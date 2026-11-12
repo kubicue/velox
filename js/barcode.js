@@ -117,3 +117,4 @@ export function generateBarcodeSVG(text, options = {}) {
     </svg>
   `.trim();
 }
+

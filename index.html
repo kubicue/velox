@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velox — Modern Shipping & Label Generator</title>
   <meta name="description" content="Local-first shipping label creator inspired by Shippo, built entirely with modern web primitives.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <meta name="theme-color" content="#1e3a8a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
@@ -20,7 +26,7 @@
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
         </svg>
         VELOX
-        <span class="brand-badge">Primitives</span>
+        <span class="brand-badge">Station</span>
       </a>
 
       <nav class="main-nav" aria-label="Main Navigation">
@@ -30,6 +36,7 @@
       </nav>
 
       <div class="header-actions">
+        <span id="connection-status-badge" class="badge badge-success" title="Local PWA Active">⚡ Offline Ready</span>
         <button id="theme-toggle-btn" class="btn btn-secondary btn-sm" title="Toggle theme">🌓 Theme</button>
         <button id="settings-modal-btn" class="btn btn-secondary btn-sm">⚙️ Settings</button>
         <a href="ship.html" class="btn btn-primary btn-sm">+ Create Label</a>
@@ -223,3 +230,4 @@
   </script>
 </body>
 </html>
+

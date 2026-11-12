@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="veloxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#veloxGrad)" />
+  <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Package Box outline -->
+    <path d="M256 96 L394 176 L394 336 L256 416 L118 336 L118 176 Z" />
+    <path d="M256 96 L256 416" />
+    <path d="M118 176 L256 256 L394 176" />
+  </g>
+  <!-- Lightning Bolt for Speed (Velox) -->
+  <polygon points="275 140 185 285 255 285 237 380 327 235 257 235" fill="#facc15" stroke="#ca8a04" stroke-width="8" stroke-linejoin="round" />
+</svg>

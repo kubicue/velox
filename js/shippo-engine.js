@@ -38,6 +38,17 @@ export async function getRates({ fromAddress, toAddress, parcel, apiKey = null }
 
   return [
     {
+      id: "rate_internal_dispatch",
+      carrier: "INTERNAL",
+      service: "Internal Point of Shipping",
+      service_code: "internal_dispatch",
+      days: 0,
+      duration_terms: "Station intake & warehouse routing",
+      amount: "0.00",
+      currency: "USD",
+      badge: "Internal Routing"
+    },
+    {
       id: "rate_usps_ground",
       carrier: "USPS",
       service: "USPS Ground Advantage™",
@@ -224,3 +235,4 @@ async function fetchShippoRates({ fromAddress, toAddress, parcel, apiKey }) {
     badge: r.attributes?.includes("CHEAPEST") ? "Best Value" : "Standard"
   }));
 }
+
