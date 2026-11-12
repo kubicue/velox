@@ -1,33 +1,36 @@
 # velox ⚡
 
-> **Refined, accessible shipping & dispatch station. 100% pure web primitives — zero frameworks, zero build tools, zero dependencies, minimal files.**
+> **Refined, accessible shipping & dispatch station. 100% pure web primitives — zero frameworks, zero build tools, zero dependencies, exactly 6 files.**
 
-Inspired by the clean geometric harmony of **Bauhaus**, Velox delivers an ultra-fast, local-first shipping station and scannable 4×6″ thermal label generator.
-
----
-
-## 🎨 Subtle Design Language & Accessibility
-
-- **Understated Primary Color Harmony**: Deep Slate (`#0f172a`), Cobalt Blue (`#1e40af`), Warm Amber (`#d97706`), and Crimson (`#dc2626`) woven into subtle gradients, clean borders, and calm surfaces.
-- **Accessible & High-Contrast (WCAG 2.1 AA/AAA)**:
-  - All text meets or exceeds 4.5:1 contrast against light and dark surfaces.
-  - High-visibility focus indicators (`:focus-visible`) for complete keyboard navigation.
-  - Full WAI-ARIA authoring practices (`role="tablist"`, `role="tab"`, `aria-selected`, `aria-controls`, and Arrow key navigation).
-  - Respects user preference for reduced motion (`prefers-reduced-motion`).
-- **Smooth Micro-Interactions**: Soft hover transitions and elevated card states for an enjoyable desktop feel.
+Inspired by the subtle geometric harmony of **Bauhaus**, Velox delivers an ultra-fast, local-first shipping station and scannable 4×6″ thermal label generator.
 
 ---
 
-## ⚡ Ultra-Minimal Architecture (Only 4 Files)
+## ⚡ The 6-File Architecture
+
+The application is cleanly organized into dedicated directories for markup, styling, and logic:
 
 ```
 velox/
-├── index.html       # The complete application: Accessible UI, Design System, Vector Barcode Engine,
-│                    # Local IndexedDB, Rate Engine, Live 4×6″ Thermal Preview & Print
+├── index.html       # Clean semantic HTML5 markup & accessible WAI-ARIA structure
+├── css/
+│   └── style.css    # Subtle Bauhaus design system, micro-interactions, responsive grid & @media print
+├── js/
+│   └── app.js       # Complete logic: Code-128 SVG barcode generator, IndexedDB store, carrier tariffs,
+│                    # Open-Meteo weather, WAI-ARIA tab navigation & live thermal previewer
 ├── sw.js            # PWA Service Worker enabling 100% offline warehouse operation
 ├── manifest.json    # Web App Manifest for standalone desktop/mobile installation
 └── icons/icon.svg   # Refined geometric vector icon
 ```
+
+---
+
+## 🎨 Design & Accessibility (WCAG 2.1 AA / AAA)
+
+- **Subtle Bauhaus Palette**: Deep Slate (`#0f172a`), Cobalt Blue (`#1e40af`), Warm Amber (`#d97706`), and Crimson (`#dc2626`) woven into understated gradients and clean borders.
+- **Accessible Micro-Interactions**: Smooth hover transitions (`cubic-bezier(0.16, 1, 0.3, 1)`), subtle card elevation, and interactive rate cards.
+- **Full WAI-ARIA Navigation**: Keyboard-driven tab switching (`←` / `→` arrow keys, `Home`, `End`), high-contrast focus rings (`:focus-visible`), and screen-reader accessible labeling.
+- **Reduced Motion Support**: Automatically respects `prefers-reduced-motion: reduce`.
 
 ---
 

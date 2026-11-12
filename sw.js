@@ -1,12 +1,14 @@
 /**
- * Velox Bauhaus - Minimal Offline Service Worker
- * Form Follows Function — Ultra-compact PWA Caching
+ * Velox - Minimal Offline Service Worker
+ * Form Follows Function — 6-File Compact PWA Caching
  */
 
-const CACHE_NAME = "velox-bauhaus-v1";
+const CACHE_NAME = "velox-cache-v2";
 const ASSETS = [
   "./",
   "./index.html",
+  "./css/style.css",
+  "./js/app.js",
   "./manifest.json",
   "./icons/icon.svg"
 ];
