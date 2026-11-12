@@ -223,9 +223,14 @@
         <div class="card">
           <div class="card-title">
             <span>Manifest Archive (Local IndexedDB)</span>
-            <button type="button" id="clear-manifest-btn" class="btn btn-secondary" style="font-size: 0.775rem; padding: 5px 10px;">
-              Clear Archive
-            </button>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button type="button" id="export-csv-btn" class="btn btn-secondary" style="font-size: 0.775rem; padding: 5px 12px;">
+                📥 Export to CSV
+              </button>
+              <button type="button" id="clear-manifest-btn" class="btn btn-secondary" style="font-size: 0.775rem; padding: 5px 12px; color: var(--c-red);">
+                🗑️ Purge Archive
+              </button>
+            </div>
           </div>
 
           <div class="data-table-wrap">

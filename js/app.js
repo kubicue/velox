@@ -352,10 +352,17 @@ function setupFormListeners() {
   const clearBtn = document.getElementById("clear-manifest-btn");
   if (clearBtn) {
     clearBtn.addEventListener("click", async () => {
-      if (confirm("Clear local manifest archive?")) {
+      if (confirm("Permanently purge all manifest transaction records from local storage? This cannot be undone.")) {
         await dbClearShipments();
         refreshManifest();
       }
+    });
+  }
+
+  const exportBtn = document.getElementById("export-csv-btn");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      exportManifestCSV();
     });
   }
 
@@ -471,12 +478,15 @@ function renderPreview() {
 }
 
 async function purchaseAndPrint() {
+  const weightVal = document.getElementById("pweight")?.value || "24";
   const shipment = {
     id: `velox_${Date.now()}`,
     trackingNumber: currentTracking,
     carrier: selectedRate.carrier,
     service: selectedRate.service,
     amount: selectedRate.amount,
+    weight: weightVal,
+    status: "CREATED",
     createdAt: new Date().toISOString(),
     to: document.getElementById("tname").value,
     dest: `${document.getElementById("tcity").value}, ${document.getElementById("tstate").value}`
@@ -488,6 +498,53 @@ async function purchaseAndPrint() {
   currentTracking = generateTrackingNumber();
   renderPreview();
   refreshManifest();
+}
+
+/**
+ * Export Manifest Records to CSV (RFC 4180 Compliant)
+ */
+async function exportManifestCSV() {
+  const items = await dbGetShipments();
+  if (items.length === 0) {
+    alert("No manifest records to export.");
+    return;
+  }
+
+  const headers = ["Tracking Number", "Carrier", "Service", "Recipient", "Destination", "Amount USD", "Weight OZ", "Created At", "Status"];
+
+  // RFC 4180 field escaper
+  const formatCell = (val) => {
+    const str = String(val ?? "");
+    if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+      return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+  };
+
+  const rows = items.map(i => [
+    formatCell(i.trackingNumber),
+    formatCell(i.carrier),
+    formatCell(i.service),
+    formatCell(i.to),
+    formatCell(i.dest),
+    formatCell(i.amount),
+    formatCell(i.weight || 24),
+    formatCell(i.createdAt),
+    formatCell(i.status || "CREATED")
+  ].join(","));
+
+  const csvContent = [headers.join(","), ...rows].join("\r\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const timestamp = new Date().toISOString().slice(0, 10);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `velox-manifest-${timestamp}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 async function refreshManifest() {
