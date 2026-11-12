@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Shipment — Velox</title>
+  <meta name="description" content="Create shipping labels with real-time rate comparison and live 4x6 thermal label preview.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-link">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        VELOX
+        <span class="brand-badge">Primitives</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="ship.html" class="nav-link active">New Shipment</a>
+        <a href="track.html" class="nav-link">Track</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="btn btn-secondary btn-sm">🌓 Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main">
+    <header class="page-header">
+      <div>
+        <h1 class="page-title">Create Shipping Label</h1>
+        <p class="page-subtitle">Configure origin, destination, parcel specifications, and choose a carrier rate.</p>
+      </div>
+      <div>
+        <button type="button" id="sample-data-btn" class="btn btn-secondary btn-sm">⚡ Fill Sample Data</button>
+      </div>
+    </header>
+
+    <div class="grid-ship-flow">
+      <!-- Shipment Form Column -->
+      <form id="shipping-form" novalidate>
+        <!-- From Address -->
+        <fieldset class="fieldset">
+          <legend class="legend">1. Sender Address (From)</legend>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">Full Name *</label>
+              <input type="text" id="fname" name="fname" class="form-control" required placeholder="Dr. Steve Brule">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fcompany">Company</label>
+              <input type="text" id="fcompany" name="fcompany" class="form-control" placeholder="Brule Inc.">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="fstreet1">Street Address *</label>
+            <input type="text" id="fstreet1" name="fstreet1" class="form-control" required placeholder="179 N Harbor Dr">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+              <label class="form-label" for="fcity">City *</label>
+              <input type="text" id="fcity" name="fcity" class="form-control" required placeholder="Redondo Beach">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label" for="fstate">State *</label>
+              <input type="text" id="fstate" name="fstate" class="form-control" required maxlength="2" placeholder="CA" style="text-transform: uppercase;">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label" for="fzip">ZIP Code *</label>
+              <input type="text" id="fzip" name="fzip" class="form-control" required pattern="[0-9]{5}" placeholder="90277">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- To Address -->
+        <fieldset class="fieldset">
+          <legend class="legend">2. Recipient Address (To)</legend>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="tname">Recipient Full Name *</label>
+              <input type="text" id="tname" name="tname" class="form-control" required placeholder="Cal Naughton Jr.">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="tcompany">Company</label>
+              <input type="text" id="tcompany" name="tcompany" class="form-control" placeholder="Naughton Racing">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tstreet1">Street Address *</label>
+            <input type="text" id="tstreet1" name="tstreet1" class="form-control" required placeholder="42 Fast Track Way">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+              <label class="form-label" for="tcity">City *</label>
+              <input type="text" id="tcity" name="tcity" class="form-control" required placeholder="Charlotte">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label" for="tstate">State *</label>
+              <input type="text" id="tstate" name="tstate" class="form-control" required maxlength="2" placeholder="NC" style="text-transform: uppercase;">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label" for="tzip">ZIP Code *</label>
+              <input type="text" id="tzip" name="tzip" class="form-control" required pattern="[0-9]{5}" placeholder="28202">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Package Dimensions -->
+        <fieldset class="fieldset">
+          <legend class="legend">3. Parcel Dimensions & Weight</legend>
+
+          <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">
+            <button type="button" class="btn btn-secondary btn-sm preset-btn" data-length="9" data-width="6" data-height="2" data-weight="12">
+              ✉️ Padded Envelope
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm preset-btn" data-length="10" data-width="7" data-height="4" data-weight="24">
+              📦 Small Box
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm preset-btn" data-length="12" data-width="12" data-height="8" data-weight="48">
+              📫 Medium Box
+            </button>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="plength">Length (in) *</label>
+              <input type="number" id="plength" name="plength" class="form-control" required min="1" value="10">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pwidth">Width (in) *</label>
+              <input type="number" id="pwidth" name="pwidth" class="form-control" required min="1" value="7">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pheight">Height (in) *</label>
+              <input type="number" id="pheight" name="pheight" class="form-control" required min="1" value="4">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="pweight">Weight (oz) *</label>
+              <input type="number" id="pweight" name="pweight" class="form-control" required min="1" value="24">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Available Rates Selection -->
+        <fieldset class="fieldset">
+          <legend class="legend">4. Select Carrier & Rate</legend>
+          <rate-selector id="rate-selector-component"></rate-selector>
+        </fieldset>
+
+        <!-- Submit & Print Button -->
+        <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6);">
+          <button type="submit" id="buy-label-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+            🖨️ Purchase & Print Thermal Label
+          </button>
+        </div>
+      </form>
+
+      <!-- Thermal Label Preview Sticky Column -->
+      <aside>
+        <div style="position: sticky; top: 90px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3);">
+            <h2 style="font-size: 1rem; font-weight: 700; color: var(--text-main);">Live 4×6″ Thermal Preview</h2>
+            <span class="badge badge-info">Real-Time SVG Barcode</span>
+          </div>
+
+          <div class="thermal-preview-container">
+            <shipping-label id="preview-label"></shipping-label>
+          </div>
+
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-3); text-align: center;">
+            This preview updates live as you type and prints pixel-perfect on standard 4"×6" thermal label rolls.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>Velox — Modern Web Primitives Shipping Engine</div>
+      <div>Zero external build steps</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { initAppShell } from "./js/app.js";
+    import { db } from "./js/db.js";
+    import { getRates, createLabel } from "./js/shippo-engine.js";
+    import "./js/components/shipping-label.js";
+    import "./js/components/rate-selector.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await initAppShell();
+      initForm();
+    });
+
+    async function initForm() {
+      const form = document.getElementById("shipping-form");
+      const previewLabel = document.getElementById("preview-label");
+      const rateSelector = document.getElementById("rate-selector-component");
+      const sampleBtn = document.getElementById("sample-data-btn");
+
+      // Package dimension presets
+      document.querySelectorAll(".preset-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.getElementById("plength").value = btn.dataset.length;
+          document.getElementById("pwidth").value = btn.dataset.width;
+          document.getElementById("pheight").value = btn.dataset.height;
+          document.getElementById("pweight").value = btn.dataset.weight;
+          refreshRatesAndPreview();
+        });
+      });
+
+      // Quick fill sample data
+      sampleBtn.addEventListener("click", () => {
+        document.getElementById("fname").value = "Jonathan Castro";
+        document.getElementById("fcompany").value = "Velox Labs";
+        document.getElementById("fstreet1").value = "1540 2nd St";
+        document.getElementById("fcity").value = "Santa Monica";
+        document.getElementById("fstate").value = "CA";
+        document.getElementById("fzip").value = "90401";
+
+        document.getElementById("tname").value = "Alice Cooper";
+        document.getElementById("tcompany").value = "Modern Web Co.";
+        document.getElementById("tstreet1").value = "770 Broadway";
+        document.getElementById("tcity").value = "New York";
+        document.getElementById("tstate").value = "NY";
+        document.getElementById("tzip").value = "10003";
+
+        refreshRatesAndPreview();
+      });
+
+      // Form input change listener for live preview
+      form.addEventListener("input", () => {
+        updateLabelPreview();
+      });
+
+      // Recalculate rates when weights/zips change
+      ["fzip", "tzip", "pweight"].forEach(id => {
+        document.getElementById(id).addEventListener("blur", () => {
+          refreshRatesAndPreview();
+        });
+      });
+
+      // Handle rate selection event from custom element
+      rateSelector.addEventListener("rate-selected", (e) => {
+        updateLabelPreview(e.detail.rate);
+      });
+
+      // Form submission & Label Creation
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Native constraint validation check
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const selectedRate = rateSelector.selectedRate;
+        if (!selectedRate) {
+          alert("Please select a carrier rate first.");
+          return;
+        }
+
+        const formData = getFormData();
+        const apiKey = await db.getSetting("shippo_api_key", null);
+
+        const buyBtn = document.getElementById("buy-label-btn");
+        buyBtn.disabled = true;
+        buyBtn.textContent = "Generating Label...";
+
+        try {
+          const createdShipment = await createLabel({
+            fromAddress: formData.fromAddress,
+            toAddress: formData.toAddress,
+            parcel: formData.parcel,
+            selectedRate,
+            apiKey
+          });
+
+          // Redirect to print page
+          window.location.href = `print.html?id=${createdShipment.id}&autoprint=1`;
+        } catch (err) {
+          alert(`Error generating label: ${err.message}`);
+          buyBtn.disabled = false;
+          buyBtn.textContent = "🖨️ Purchase & Print Thermal Label";
+        }
+      });
+
+      // Initial rate load
+      await refreshRatesAndPreview();
+    }
+
+    function getFormData() {
+      return {
+        fromAddress: {
+          name: document.getElementById("fname").value || "Dr. Steve Brule",
+          company: document.getElementById("fcompany").value || "",
+          street1: document.getElementById("fstreet1").value || "179 N Harbor Dr",
+          city: document.getElementById("fcity").value || "Redondo Beach",
+          state: (document.getElementById("fstate").value || "CA").toUpperCase(),
+          zip: document.getElementById("fzip").value || "90277"
+        },
+        toAddress: {
+          name: document.getElementById("tname").value || "Cal Naughton Jr.",
+          company: document.getElementById("tcompany").value || "",
+          street1: document.getElementById("tstreet1").value || "42 Fast Track Way",
+          city: document.getElementById("tcity").value || "Charlotte",
+          state: (document.getElementById("tstate").value || "NC").toUpperCase(),
+          zip: document.getElementById("tzip").value || "28202"
+        },
+        parcel: {
+          length: parseFloat(document.getElementById("plength").value) || 10,
+          width: parseFloat(document.getElementById("pwidth").value) || 7,
+          height: parseFloat(document.getElementById("pheight").value) || 4,
+          weight: parseFloat(document.getElementById("pweight").value) || 24
+        }
+      };
+    }
+
+    function updateLabelPreview(activeRate = null) {
+      const data = getFormData();
+      const rateSelector = document.getElementById("rate-selector-component");
+      const currentRate = activeRate || rateSelector.selectedRate;
+
+      const previewLabel = document.getElementById("preview-label");
+      previewLabel.shipment = {
+        trackingNumber: "9400111899562537638212",
+        carrier: currentRate?.carrier || "USPS",
+        service: currentRate?.service || "USPS Ground Advantage™",
+        fromAddress: data.fromAddress,
+        toAddress: data.toAddress,
+        parcel: data.parcel,
+        createdAt: new Date().toISOString()
+      };
+    }
+
+    async function refreshRatesAndPreview() {
+      const data = getFormData();
+      const apiKey = await db.getSetting("shippo_api_key", null);
+      const rates = await getRates({
+        fromAddress: data.fromAddress,
+        toAddress: data.toAddress,
+        parcel: data.parcel,
+        apiKey
+      });
+
+      const rateSelector = document.getElementById("rate-selector-component");
+      rateSelector.rates = rates;
+      updateLabelPreview(rateSelector.selectedRate);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velox — Modern Shipping & Label Generator</title>
+  <meta name="description" content="Local-first shipping label creator inspired by Shippo, built entirely with modern web primitives.">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/print.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-link">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        VELOX
+        <span class="brand-badge">Primitives</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="ship.html" class="nav-link">New Shipment</a>
+        <a href="track.html" class="nav-link">Track</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="theme-toggle-btn" class="btn btn-secondary btn-sm" title="Toggle theme">🌓 Theme</button>
+        <button id="settings-modal-btn" class="btn btn-secondary btn-sm">⚙️ Settings</button>
+        <a href="ship.html" class="btn btn-primary btn-sm">+ Create Label</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard Content -->
+  <main class="app-main">
+    <header class="page-header">
+      <div>
+        <h1 class="page-title">Shipping Dashboard</h1>
+        <p class="page-subtitle">Manage recent shipments, print 4×6″ thermal labels, and track parcels.</p>
+      </div>
+      <div>
+        <a href="ship.html" class="btn btn-primary btn-lg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Create New Shipment
+        </a>
+      </div>
+    </header>
+
+    <!-- Top Grid: Weather Widget & Quick Metrics -->
+    <section class="grid-dashboard" style="margin-bottom: var(--space-8);">
+      <!-- Weather Card (Replacing legacy Forecast.io) -->
+      <div id="weather-container" class="weather-card">
+        <div>
+          <div style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.85;">Current Weather & Dispatch</div>
+          <h2 id="weather-city" style="font-size: 1.5rem; color: #ffffff; margin-top: 4px;">Loading local forecast...</h2>
+          <div id="weather-condition" style="font-size: 1rem; margin-top: 4px;">Fetching weather data...</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-4);">
+          <span id="weather-icon" style="font-size: 3rem;">🌤️</span>
+          <div class="weather-details">
+            <div id="weather-temp" class="weather-temp">--°</div>
+            <div id="weather-humidity">Humidity: --%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats Card -->
+      <div class="card" style="display: flex; flex-direction: column; justify-content: center; gap: var(--space-3);">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">ACTIVE SHIPMENTS</span>
+          <span class="badge badge-success">Local-First</span>
+        </div>
+        <div id="stat-total-count" style="font-size: 2.25rem; font-weight: 800; color: var(--color-primary);">1</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
+          Stored directly in your browser's IndexedDB. Zero external tracking.
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Shipments Table -->
+    <section class="card">
+      <div class="card-title">
+        <span>Recent Shipments</span>
+        <a href="ship.html" class="btn btn-secondary btn-sm">+ New Label</a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table" aria-label="Recent shipments table">
+          <thead>
+            <tr>
+              <th>Tracking Number</th>
+              <th>Carrier & Service</th>
+              <th>Recipient</th>
+              <th>Cost</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th style="text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="shipments-tbody">
+            <!-- Dynamic rows populated via JS -->
+            <tr>
+              <td colspan="7" style="text-align: center; color: var(--text-muted); padding: var(--space-6);">
+                Loading saved shipments from IndexedDB...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Settings Dialog (Native HTML5 <dialog>) -->
+  <dialog id="settings-dialog" class="native-modal">
+    <h3 style="margin-bottom: var(--space-3);">Velox Settings</h3>
+    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: var(--space-4);">
+      Velox operates completely offline in <strong>Demo Mode</strong> by default. You can optionally connect your Shippo API key for live carrier rates.
+    </p>
+
+    <div class="form-group">
+      <label class="form-label" for="shippo-api-key-input">Shippo API Token (Optional)</label>
+      <input type="password" id="shippo-api-key-input" class="form-control" placeholder="shippo_test_...">
+      <small style="color: var(--text-muted); font-size: 0.75rem; margin-top: 4px; display: block;">
+        Stored only in your local browser IndexedDB. Never transmitted to third parties.
+      </small>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6);">
+      <button id="close-settings-btn" class="btn btn-secondary">Close</button>
+      <button id="save-settings-btn" class="btn btn-primary">Save Settings</button>
+    </div>
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>
+        <strong>Velox</strong> — Rebuilt with pure HTML5, CSS & Web Components. Inspired by Shippo.
+      </div>
+      <div>
+        Zero Frameworks • Zero Dependencies • Local-First
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts (ES Modules) -->
+  <script type="module">
+    import { initAppShell } from "./js/app.js";
+    import { db } from "./js/db.js";
+    import { fetchCurrentWeather } from "./js/weather.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await initAppShell();
+      loadWeather();
+      loadShipmentsTable();
+    });
+
+    async function loadWeather() {
+      const weather = await fetchCurrentWeather();
+      document.getElementById("weather-city").textContent = weather.city;
+      document.getElementById("weather-condition").textContent = `${weather.condition} • Humidity: ${weather.humidity}%`;
+      document.getElementById("weather-temp").textContent = `${weather.temp}°F`;
+      document.getElementById("weather-humidity").textContent = `Precipitation: ${weather.precipitation}"`;
+      document.getElementById("weather-icon").textContent = weather.icon;
+    }
+
+    async function loadShipmentsTable() {
+      const shipments = await db.getAllShipments();
+      const tbody = document.getElementById("shipments-tbody");
+      document.getElementById("stat-total-count").textContent = shipments.length;
+
+      if (shipments.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" style="text-align: center; color: var(--text-muted); padding: var(--space-8);">
+              No shipments found. <a href="ship.html">Create your first shipment label</a>.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = shipments.map(s => `
+        <tr>
+          <td>
+            <a href="track.html?number=${s.trackingNumber}" style="font-family: var(--font-mono); font-weight: 700;">
+              ${s.trackingNumber}
+            </a>
+          </td>
+          <td>
+            <strong>${s.carrier}</strong>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">${s.service}</div>
+          </td>
+          <td>
+            <strong>${s.toAddress?.name || "Recipient"}</strong>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">${s.toAddress?.city}, ${s.toAddress?.state}</div>
+          </td>
+          <td style="font-weight: 700;">$${s.amount}</td>
+          <td>${new Date(s.createdAt).toLocaleDateString()}</td>
+          <td>
+            <span class="badge badge-success">${s.status || "Created"}</span>
+          </td>
+          <td style="text-align: right; white-space: nowrap;">
+            <a href="print.html?id=${s.id}" target="_blank" class="btn btn-secondary btn-sm" title="Print 4x6 Label">
+              🖨️ Print
+            </a>
+            <a href="track.html?number=${s.trackingNumber}" class="btn btn-secondary btn-sm">
+              📍 Track
+            </a>
+          </td>
+        </tr>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Velox - Thermal Shipping Label Print Stylesheet
+   Precision 4" x 6" Thermal Label & 8.5" x 11" Packing Slip Media
+   ========================================================================== */
+
+@page {
+  size: 4in 6in;
+  margin: 0;
+}
+
+@media print {
+  /* Hide all navigation, buttons, app shell */
+  header, nav, footer, .no-print, button, .app-header, .app-footer {
+    display: none !important;
+  }
+
+  html, body {
+    width: 4in;
+    height: 6in;
+    margin: 0;
+    padding: 0;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-page {
+    width: 4in;
+    height: 6in;
+    page-break-after: always;
+    page-break-inside: avoid;
+    box-sizing: border-box;
+    padding: 0.1in;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Shipping Label Preview on screen */
+.thermal-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-4);
+  background: var(--bg-muted);
+  border-radius: var(--radius-lg);
+  border: 1px dashed var(--border-color);
+}
+
+.shipping-label-card {
+  width: 4in;
+  min-height: 6in;
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: var(--shadow-thermal);
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Label Internal Grid & Sections */
+.label-header {
+  display: flex;
+  border-bottom: 2px solid #000000;
+  min-height: 0.85in;
+}
+
+.label-carrier-logo {
+  flex: 1;
+  padding: 0.08in;
+  border-right: 2px solid #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carrier-name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.carrier-service {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.label-postage-paid {
+  width: 1.4in;
+  padding: 0.06in;
+  text-align: center;
+  font-size: 0.65rem;
+  line-height: 1.15;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #000000;
+}
+
+.postage-box {
+  border: 1px solid #000000;
+  width: 100%;
+  padding: 2px;
+  font-weight: bold;
+}
+
+/* Service Banner */
+.label-service-banner {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  padding: 0.04in 0;
+  text-transform: uppercase;
+}
+
+/* Addresses Section */
+.label-addresses {
+  padding: 0.08in;
+  border-bottom: 2px solid #000000;
+  min-height: 1.6in;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.label-from-address {
+  font-size: 0.68rem;
+  line-height: 1.25;
+  margin-bottom: 0.1in;
+  text-transform: uppercase;
+}
+
+.label-to-address {
+  margin-left: 0.25in;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.to-name {
+  font-size: 1.05rem;
+  font-weight: 900;
+}
+
+/* Tracking & Barcode Section */
+.label-barcode-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1in 0.05in;
+  border-bottom: 2px solid #000000;
+}
+
+.barcode-svg {
+  width: 95%;
+  height: 1.1in;
+}
+
+.tracking-text {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-top: 0.04in;
+  text-align: center;
+}
+
+/* Label Footer & Routing */
+.label-footer {
+  display: flex;
+  min-height: 0.65in;
+}
+
+.routing-code {
+  flex: 1;
+  padding: 0.08in;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-right: 2px solid #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label-metadata {
+  width: 1.5in;
+  padding: 0.08in;
+  font-size: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
