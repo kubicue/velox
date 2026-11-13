@@ -2,7 +2,7 @@
 
 > **Refined, accessible shipping & dispatch station. 100% pure web primitives — zero frameworks, zero build tools, zero dependencies, exactly 6 files.**
 
-Inspired by the subtle geometric harmony of **Bauhaus**, Velox delivers an ultra-fast, local-first shipping station and scannable 4×6″ thermal label generator.
+Velox delivers an ultra-fast, local-first shipping station and scannable 4×6″ thermal label generator.
 
 ---
 
